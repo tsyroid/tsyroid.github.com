@@ -1,43 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Syroidmanor.com Redux</title>
-</head>
+---
+layout: default
+title: Syroidmanor Redux
+---
 
-<body>
-    <h1>My Blog</h1>
+<div id="home">
+  <h1>Blog Posts</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
 
-    <h2>Under Construction</h2>
+  <h1>Other Stuff</h1>
+  <ul class="posts">
+    <li>Other Stuff Here</li>
+  </ul>
 
-    <p>Bear with me.... We (well, more like I) seem to be experiencing what is
-    commonly know as "technical difficulties".</p>
-
-    <p>Have a post around here somewhere, really-really. I can see it; the
-    problem is, you can't. Pls bear with me une-momemto svp.</p>
-
-    <h2>Recent Posts</h2>
-
-    <h4>(Jul 13, 2011) Never Say Never</h4>
-    <h4>Placeholder</h4>
-    <h4>Placeholder</h4>
-    <h4>Placeholder</h4>
-
-</body>
-
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-
-<footer>
-<section id="connect">
-<p><span>Twitter</span><a href="http://twitter.com/tsyroid">http://twitter.com/tsyroid</a></p>
-<p><span>Github</span><a href="http://github.com/tsyroid">http://github.com/tsyroid</a></p>
-</section>
-
-<section id="license">
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/ca/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-nd/2.5/ca/80x15.png" /></a>
-</section>
-
-</footer>
-</html>
+  <h1>Cool Technologies (that make this site possible):</h1>
+  <ul class="posts">
+    <li><a href="http://pages.github.com/">GitHub Site Hosting Services</a>
+    <li><a href="http://github.com/mojombo/jekyll/">Jekyll:</a> A simple, blog aware, static site generator (used for this site).</li>
+    <li><a href="http://github.com/rtomayko/rdiscount/">RDiscount:</a> A C-Language implementation of Gruber's Markdown.</li>
+  </ul>
+</div>

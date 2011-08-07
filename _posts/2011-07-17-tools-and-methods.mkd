@@ -1,0 +1,87 @@
+---
+layout: post
+title: Tools and Methods
+---
+
+# {{ page.title }}
+
+<p class="meta">17 July 2011</p>
+
+When I survey the landscape of the last 10 years, the tools and methods I use on a daily basis have not changed all that much - beyond a few noteable exceptions. I browse the web with Firefox ([daily-trunk](http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/), which if memory serves, is currently at rev 8.0a1; don't pay much attention to browser numbers any more) and do the majority of my configuring / tweaking / fixing / modifying at the command line via a terminal.
+
+### Creating "Stuff"
+
+Almost everything I create is created in a variant of plain text. By variant I mean the format is plain text, which is in turn frequently embellished with some form of markup. [Gruber's Markdown](http://daringfireball.net/projects/markdown/) is my go-to standard, but I've also dabbled in [asciidoc](http://www.methods.co.nz/asciidoc/index.html), [reST](http://docutils.sourceforge.net/rst.html), [ronn](http://rtomayko.github.com/ronn/), and the mother of all markup complexities, [DocBook](http://www.docbook.org/).
+
+The above paragraph is pivotal to understanding both my style and my unwavering desire to not repeat myself or the work I produce. I want to work at the least-common-denominator level - make it once; transform it, as needed, to "standard du-jour". For example, these posts are written in Markdown. To transform a given document to "pure" text is a simple matter of knocking out the header lines and a few tags; both of which are trivial to script and/or automate in the case of larger documents.
+
+The key point here is that 90% of everything stored on my hard drive can be opened, edited, and [effortlessly] read in a text editor.
+
+In contrast, I have gigabytes of archived material that require elaborate incantations from specific apps just to see what hidden treasures lurk within. Name your poison, I have it. Excel spreadsheets (let's see now, is that an Excel 97 variant, Excel 2002, or what's the latest-greatest? Excel ODF <-- sly joke). Word documents; acres upon acres of html (fortunately, I learned about strict early on); blah and blah. And while it can be argued that html is *relatively* easy to read and *relatively* easy to convert to text, relative is relative.
+
+On the other hand, plain text is plain text.
+
+### Tools for Creating "Stuff"
+
+There was a day when I'd select an OS du-jour based on a perceived wow/coolness factor, then attempt to shoe-horn my favorite apps into said environment. Often with mixed results. The tables have turned. Today the OS I use needs to support my "toolbox" with as little "dicking around" as possible.
+
+For the record, I currently use Ubuntu NATTY. Not because NATTY is "better" than Mint or Fedora or any of the 300 other alternatives, but because (a) I've used NATTY long enough to understand most of it's framework/underpinnings/quirks, (b) the Ubuntu PPA system is a boon to people like me who love to dance on the bleeding edge of package development, (c) I can install the apps I use daily effortlessly with scripts I've built, and (d) once setup and configured, it doesn't get "in my face". The latter is perhaps the most important to me. In my world, an OS should not be something one evangalizes about, or has any noteable attachments to - it should "just work". Without fuss, without muss, and without fanfare. Any time I find myself standing on a soapbox, preaching the gospel of my chosen OS, is a time to take a step back and do some serious re-evaluation.
+
+If I'm building a new system for my own personal use, evaluating a new OS, or simply working on a system for more than 30 minutes, the following apps get installed. If something prohibits me from installing them; if they cannot be installed with relative ease; or if the installation process "borks" for whatever reason, my attention span and resultant focus diminishes exponentially. Once you've tasted elegance, it's really hard to go back.
+
+Here's a snippet from the `core-apps.sh` install script I use:
+
+    sudo apt-get -f install \
+    aptitude debtags tasksel \
+    cryptsetup ecryptfs-utils \
+    nouveau-firmware \
+    curl cdargs tree \
+    pwgen wipe \
+    terminator \
+    vim vim-doc vim-scripts vim gnome \
+    synapse \
+    meld git-core git-flow bzr mercurial \
+    compizconfig-settings-manager \
+    gloobus-preview \
+    apt-file apt-clone \
+    y-ppa-manager \
+    p7zip-full p7zip-rar \
+    nautilus-wallpaper \
+    nautilus-pastebin \
+    nautilus-gksu \
+    nautilus-bzr \
+    wordnet artha
+
+Note a many of the above are preceeded by the addition of specific "testing" or "development"; this enables me to get the version I want, out of the box, without having to do an inital install, then an upgrade.
+
+I use USB "sticks" a lot. To transfer files; to store ISOs; to provide an persistent hot-backup source when I'm butchering files; the list goes on and on. They're cheap, they're relatively durable, but they're also woefully insecure. Put the wrong thing on a USB stick and lose it, and the world is definately not your oyster. So I encrypt every USB thingy I own (except installer USBs, which still insist on being layered on a FAT32 filesystem). It's simple to do, and only takes a few minutes. The requisite framework required to read/write those USB's is **cryptsetup**.
+
+** Terminator ** is my terminal app of choice. It works as advertised, and is configurable in ways that suit my workflow. I particularly like the option of being able to quickly split a current window when I update a changelog or make a commit.
+
+** Vim ** is my daily workhorse. Why Vim? Two words: Simple Elegance. Vim is extensible and adaptable to whatever workflow spins your crank. Over time, I've built up an [environment](https://github.com/tsyroid/vimfiles.git) that simply works (for me). Yes, Vim is - er - a tad "challenging" to absorb at first blush. But it's worth every penny in terms of investment. When you reach the lofty nirvana of "Vim muscle memory" something magical happens; the mechanics of creating leave and you're surrounded by the simple act of creativity itself.
+
+Jeet Sukumaran has a good intro article on [Grokking the Zen of Vi](http://jeetworks.org/grokking-the-zen-of-the-vi-wu-wei). Scroll down a couple page-downs and look at the graphics depicting typical editor learning curves. Humorous but true. As noted, Vim is an investment. You gotta wanna grok it, for whatever reason. Learning Vim takes discipline and practice. The rewards are deep and hard to describe. When working in another editor, I instinctively try to save the document with ":w" :-)
+
+Vim is like the carefully considered moves of a marshal art. It's highly configurable. Take a little, take a lot; it adapts to your appetite. Best of all, Vim has a huge, active community behind it. There are literally thousands of readily available scripts/plugins available to do just about anything you can imagine without leaving the framework of Vim.
+
+** Sublime-Text-2 ** is my alternative editor. Some days it fights with Vim for the go-to-editor title. It's currently a work-in-progress (just made the leap to beta status a week or so ago), but the developer (Jon Skinner, ex-google engineer) is careful and respecting of my work. I really like Sublime Text. If you want an editor that simply works, without getting in your face, give it a whirl. The download is free, although there's "nag to buy me" prompts every so often. Personally, it's the best $79 I've invested in in a long time. Details [here](http://www.sublimetext.com/) if you're interested.
+
+My current browser of choice is **Firefox** daily-trunk. Prior to Firefox, I used Chromium -- for almost a year. Prior to that, I vasillated. But that introduced a complication: Keeping my bookmarks synced between two software platforms. Xmarks worked like a champ, but I had to continually remember which platform was the latest-greatest, which introduced a distraction I didn't need or want. I finally quit trying to juggle browsers with plugins with "which browser did you use last and did you upload the bookmarks?". I settled on Firefox and rely on Weave to keep my ducks lined up across systems. Again, it just works. And I trust Mozilla's spoke commitment to security.
+
+Why the switch from Chromium to Firefox? Hard to pin down to any one thing. I gravitate to bleeding-edge daily release cycles. But those releases need to work without routine breakage. Mozilla's latest release cycle has, so far, provided me with cutting edge coolness and decent reliability. I can count on one hand the number of times an update to trunk has left it in a non-functional state. Speed is a factor, but not the deciding one. For what I use it for, Firefox 8 is more than adequate. Faster than the current Chromium-daily releases (from a purely subjective POV). Add-ons are important. Today's browsers are designed as a slim, mean, framework for browsing the web. The bling and useability tweaks fall to the realm of add-ons. I personally think the Firefox community has better addons. I don't use many, but the ones I use work - reliably, daily, across daily revisions.
+
+**Synapse** is a ["sematic file launcher"](http://codingyourdreams.net/2011/04/07/synapse-aspartate-0-2-6/). It's cool and magical. When it's not installed on the system I'm working on, I struggle. Synapse derives its magic from a tight integration with [Zeitgeist](https://launchpad.net/~zeitgeist/+archive/ppa). It just works, and my brain is now hardwired to `[ctrl]+[space}` when I want to run (or find) an application.
+
+Last but not least, [Nautilus-Elementary](https://launchpad.net/~am-monkeyd/+archive/nautilus-elementary-ppa) integration goes on every Ubuntu-based system I configure. Although I think of Elementary as a single app, it's actually a collection of Nautilus tweaks and addons. In particular, **Gloobus-Preview**. Gloobus Preview is another one of those things that have become hard-wired into my workflow. Need to quickly scan a file? Press `<space>`, view, press `<space>` again to close. Need to cut a couple lines of code to paste into a file open in >Insert-Your-Favorite-Editor-Here<? Select in the file in Nautilus, space, copy-block, space, paste into editor. As an added bonus, Gloobus Preview accurately previews most files on my system with breaking a sweat. Gloobus does not automatically install with the nautilus-elementary updates; you need to manually `aptitude install gloobus-preview`. You also need to install the requisite "3rd party" PPA.
+
+Nuff for today. Fast approaching TL;DR already. In a future post I wander down the path of the filesystem layout I use and why.
+
+Be well.
+
+### Further Resources
+
+* [Synapse Core Team (Development) PPA](https://launchpad.net/~synapse-core/+archive/ppa): Latest development releases; always useable.
+
+* [Amonkeyd's Nautilus Branch](https://launchpad.net/~am-monkeyd/+archive/nautilus-elementary-ppa): Home of the latest elementary nautilus snapshot, and Gloobus Preview.
+
+* [Jon Skinner's Sublime Text 2 Project](http://www.sublimetext.com/): One of the best GUI editors I've used. Highly recommended. Download a free trial [here](http://www.sublimetext.com/2).

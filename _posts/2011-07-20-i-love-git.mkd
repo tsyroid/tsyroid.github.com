@@ -1,0 +1,177 @@
+---
+layout: post
+title: I Love Git
+---
+
+# {{ page.title }}
+
+<p class="meta">20 July 2011</p>
+
+I love git. Almost everything on my filesystem that has any kind of long-term value goes in a git repository. Anything I need access to "anywhere-anytime", gets foisted to a remote repository on [GitHub](http://www.github.com).
+
+Git embodies something I term "Simple Elegance". It's simple to use, simple to understand (given a modicum of desire and a handful of grokkable core
+concepts), robust, and almost infinitely adaptable to a wide variety of scenarios and/or workflows.
+
+A lot of folks out there don't appear to share my sentiments. Some of the most common phrases I hear (virtually) associated with git are: complex,
+convoluted, and unfriendly.
+
+Bollocks.
+
+Twenty plus years ago, I was studying hydraulics in trade school. Our instructor was Karl. Karl had been teaching various aspect of the heavy duty
+trade for centuries. He laid it on the table the first day. "Troubleshooters are the some of the most valuable technicians in the business. The good ones
+all have one thing in common -- they understand the underlying system. In order to troubleshoot, you must understand how the system in front of you
+works at the most atomic level possible. Break it down, understand the atoms and why they do what they do, and you can fix anything".
+
+I carry that wisdom with me to this day.
+
+There's nothing inherently broken about git, but in order to understand how it works (and use that understanding to know what to fix when you eventually
+break something), you need to break it down into digestible pieces.
+
+### Groking Git
+
+Git primary purpose in life is to record snapshots of your filesystem as it existed at a specific point in time. You decide when each snapshot is going to
+take place. Over time, git builds a historic record of file additions, changes, and deletions. This history, and the various bits and bobs used to
+keep track of this history, is called a *repository*.
+
+I'm going to break this repository structure down into seven pieces. Yes, yes. I understand I should technically be using eight distinctions and you say
+potatoe while I say potato. Grant me some license, OK. I'm a writer. Writers are allowed license.
+
+I'm going to further dissect these seven pieces into two logical categories: "concepts" and "objects". Concepts include the working directory, the index,
+and a special thing in the git history called *HEAD*. The object list includes *blobs*, *tree*, *commits*, and *references*. Three concepts; four objects.
+Now what could be so complicated about that?
+
+Now let's provide a general framework for this discussion: **Everything in git is a commit**. It's either a recorded commit or on it's way to becoming a
+commit. I'm excluding anything you don't want tracked by the repository. They're significant in that you need to know how-to exclude something, and you
+need to be conscious of what you've excluded (and perhaps why), but the fact you've explicitly excluded something means git is not tracking it, and as a
+result, it's not part of the git repository structure.
+
+### Three Concepts
+
+Files move into and out of the repository structure in the following order:
+
+Concept One: *The Working Directory*. Remember, git's job is to produce a snapshot of how your filesystem looked at a specific point in time. Think of a
+snapshot as a "viewport". If you're working in "now", git displays all your files and directories as they are right now. If you request a viewport on
+three days ago, git moves to the snapshot taken three days ago and displays all your files and directories exactly as they were at that point in time. If
+you have untracked files in your repository, they don't change because they've been excluded from the snapshot.
+
+With snapshots you can move back in time; you can also move sideways to create a "what-if" scenario. What if I took my existing configuration and added
+plugin 'Y'? Would it mess up my existing configuration? Would it help increase my productivity? What-ifs are called *branches*. You start with a given commit
+or snapshot, and start a new parallel tree. This parallel tree is reflected in your working directory. Didn't work out? Switch back to where you started from
+and continue on. Depending on the incantations passed to git, you can either save this branch and switch back to it another time, or remove it altogether.
+
+Sorry, future time travel is still in development.
+
+Concept Two: *The Index*. The index is unique to git. It's often referred to as the *staging area*. Because it's unique, the index frequently throws people
+coming from other versioning systems for a loop; not because it's complex, but because it doesn't match the framework they're used to. Whenever you add a
+file to the repository, it's moved to the index -- it does not immediately become a commit. The index allows you to build-up, or stage (hence the term
+staging area) a series of changes, which you then commit in logical chunks. Or toss out. Or sit on. The index gives you the means to select the changes you
+want in a given commit.
+
+The index also determines what is displayed in the working directory -- think of it as an intermediary step in the commit process that works in both
+directions. So you can ask git go back to a commit made three days ago and place it in the index. The "difference" between then and now is moved to the
+index, *without changing the snapshot or commit the the working directory currently depicts*. When you understand what it does, and what it represents,
+the index is one of the most powerful tools in git's arsenal.
+
+Concept Three: *HEAD*. HEAD is a symbolic name for your last commit. It also the parent of your next commit. Git builds on HEAD to produce the history
+contained in your repository. Head is a member of the "reference" camp of objects, but it's also critical to understanding how the system does what it
+does. HEAD always points to your last commit. If you're on the "master branch" (git's initial default structure), HEAD points to your last commit there. If
+you've created a new branch and working within the context of this branch, HEAD points to your last commit here. So HEAD moves around git's internal
+structure accordingly. This is significant for three reasons: (1) HEAD points to your last commit, so it also defines what's displayed in your working
+directory; (2) HEAD moves, most other reference objects do not -- they reference fixed point in the repository (eg, tags); (3) when there are no
+fixed references to a commit, and you don't feel like referencing the SHA1 hash, HEAD can be used to move around git's repository. For example, HEAD~3
+references the "great grandparent" of your current commit (HEAD = current; HEAD~1 = parent; HEAD~2 = grandparent; HEAD~3 = great-grandparent).
+
+So we have a conceptual structure: the working directory, the index, and HEAD or the last commit made. How does a file go from your filesystem to a commit? Follow the bouncing ball...
+
+### Four Objects
+
+A git repository is comprised of four objects: blobs, trees, commits, and the plumbing that links everything together, references.
+
+When you instruct git to add a file to the repository, it creates a "SHA1 hash" of that file and moves this hash file to the *index*. This cryptographic
+hash ensures the file is certifiably, genuinely unique. Forever and ever amen (we'll get to the ahmen part in a minute). It also implies that if I create a
+file on my system and add it to my repository, and you create the exact same file on your filesystem and add it to your repository, the SHA1 hashes *will
+be identical*. Which is what makes git's storage mechanism so efficient -- it doesn't store identical objects twice.
+
+Try it. If you have git installed on your system, enter the following:
+
+    $ mkdir test; cd test
+    $ echo 'Git rocks!' > example
+    $ git hash-object example
+    > ded3e4d1f5f6b8bc102572534165c8f16ba3075e
+
+The last line above is the 40 character SHA1 hash git created for the file `example`. If you entered the above exactly as I did, the SHA hash displayed on
+your screen should be the same. Note two things: (1) we did not need to create a git repository to produce the above hash; (2) if we were working in an
+established repository, containing the file `example`, and we requested git add this file to the repository, the above hash is what the index would contain.
+Normally, when you view the contents of the index git translates this hash into something you understand -- a filename. But it's a translation.
+
+This SHA1 hash is called a *blob*. It's called a blob because it's - well - just a blob. A blob is a hash derived from a file. Period. Blobs contain no
+attributes, timestamps, or "meta-data" commonly associated with files.
+
+So you hack, change, tweak, and twiddle. Each file you change remains on the filesystem as an ordinary file until you explicitly add it to the repository.
+When you add it, git creates a blob, and moves the blob into the index. You reach a point where you want to make a commit.
+
+A commit involves two discrete actions. In the first, git takes the blobs sitting in the index, and marries each blob to a *tree* -- which are similar
+to filesystem directories with a few notable exceptions. It's the tree that holds the meta-data (time stamps, attributes, etc); on a typical filesystem,
+this information is stored in the file itself. Why the tree and not the blob? Read up a couple paragraphs. The git storage mechanism is remarkably efficient
+in part because files with identical content share the same SHA hash. If the meta-data was stored with the file, the SHA would be different -- because the
+timestamp would be different. Storing the meta-data in the tree means git can track and compare files based on content alone.
+
+In the second step, the blob(s) and their respective tree(s) are combined to form yet another SHA hash -- the commit itself.
+
+This commit is symbolically referenced to the name HEAD. Make another commit, git moves the reference to the new commit. HEAD moves with the commits. How
+about tags, you ask? Aren't tags an object. Not in my world of understanding. A tag is also a reference. A reference to a specific commit. The different is,
+tags don't move around like HEAD. They stay attached to the commit they're assigned. Branches? A named commit. The Reflog? A record of commits that's
+stashed away for those "ahh-shit" emergencies.
+
+Everything in git, beyond the index, is a commit or a reference to a commit. Git provides the tools to transform a file into a commit. The index stages
+blobs until you're ready to make a commit. Reverting a commit moves that commit back into the index so you can add more files, change the commit message, whatever.
+
+Over simplified? Perhaps. The problem is, too many people don't take the time to grok the basics; they want to immediate jump from initializing a repository
+to learning how to rebase a a git history. Or build post-commit hooks. Or do a three way merge with inherent conflicts. If you take the time to understand
+fully what's going on at each stage of a basic commit, 90% of your "how-do-I?" questions answer themselves.
+
+### Rinse and Repeat
+
+Let's walk thru the above steps again, but from a different angle -- the commands you'd use in an average encounter with git, and how those commands relate to the structures and mechanics above.
+
+Example: You want to store your prized vim configuration in a git repository, and eventually share it with the world (cuz it's really that good) on GitHub.
+
+    $ cd path/to/vimfiles
+    $ git init # builds required repository infrastructure
+    $ git add . # git creates SHA hashes for each file and moves
+                    them to the index
+
+    $ git add file1 file2 file3 # alternately, selectively add files
+
+    hack, hack, edit, edit
+    now I want to commit my changes ...
+
+    $ git commit -m 'My first commit' # git marries SHA hashes in index to
+            trees to represent directories, and creates a commit
+
+    git assigns a reference to this commit called HEAD
+
+That's it. Rinse, lather, repeat. Blobs, trees, commits.
+
+So really now folks, what's so hard about that? Thousands of people every day drive down the road, cigarette in one hand, coffee cup in the other, radio blaring, two kids in the back seat each talking a different language (or what sound to me like a different language), surrounded by a moving herd of other
+cars, moving in different directions, billboards trying to flag our attention, ya-da ya-da ya-da. How do we get anywhere in one piece? Well, we started with
+the basics. Push the brake to stop. Push on the throttle to go. Turn the wheel to steer. Eventually, the mechanics became instinctive.
+
+That's what this post is about. Learn the basics. Move on to the window dressing later.
+
+And above all, have fun. Stop now and then and marvel at the "Elegant Simplicity".
+
+### Further Resources
+
+There are literally hundreds of well-written articles on git floating around the web. Some of my favorites include:
+
+* Scott Chacon's ["Pro Git" book](http://http://progit.org/book/) is a treasure trove of good, clearly explained, information. It's available online for your
+reading enjoyment. If you find it useful, support Scott's efforts by buying a copy for your library.
+
+* Scott also wrote an excellent article on git's reset command, [Reset Demystified](http://http://progit.org/2011/07/11/reset.html). If you're new to git, don't get caught up in the reset/rebase stuff; focus on the diagrams and what they're telling you.
+
+* Tom Preston-Werner gave a talk at an Erlang conference entitled 'Mastering Git Basics"; it's available on [vimeo](http://http://vimeo.com/17118008). Tom does an excellent job of explaining the basic principles behind git -- until he got distracted by questions from the audience ;-). Nab a PDF containing the slides from his presentation from the [Erlang Factory](http://http://erlang-factory.com/conference/SFBay2010/speakers/TomPrestonWerner) and follow along on your keyboard.
+
+* [Stackoverflow.com](http://stackoverflow.com) is another treasure trove of information. Filter on the tag "git".
+
+* And finally, one of my favorites, [Git From the Ground Up](http://http://newartisans.com/2008/04/git-from-the-bottom-up/) by John Wiegley. This was my "Ah-Hah" document; the one that prompted me to really understand the foundational mechanics of git. It's available as a PDF download (Creative Commons License). My printed copy is dog-eared and ratty, which, in my world, is always a tribute to a well-written document.

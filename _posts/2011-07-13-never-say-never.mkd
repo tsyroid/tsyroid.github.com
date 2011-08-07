@@ -1,0 +1,46 @@
+---
+layout: post
+title: Never Say Never
+---
+
+# {{ page.title }}
+
+<p class="meta">13 July 2011</p>
+
+### Yeah, I know...
+
+I said I'd never do this again. Ever. At the time, I was sincere. But I forgot a couple small, teensie-weensie, kinda-sorta-important notions: (1) Never is a
+really, *really* long time; (2) Despite heroic efforts, my omniscience skills have never been all that good.
+
+There's a Zen saying that goes:
+
+*Those who predict, do not know; those who know, do not predict.*
+
+Clearly I missed this one in my travels 7 or 8 years ago...
+
+### Time in a bottle
+
+For those of you who know nothing of my sorted past, I used to write a blog before they were call blogs. Way back then we were allowed to call them anything we wanted. I chose the moniker "daily journal" and spit them out dutifully on a (mostly) daily basis in an attempt to live up to the name I chose for my efforts. I ran my own webserver from the comfort of my home office; it was a gargantuan IBM RS/6000, quad-cpu beast I named Hydras. The domain was Syroidmanor.com (catchy, eh?); it's since fallen into the hands of those interesting folk who collect such things. I still have Hydras. Kind of a museum piece now, but we go back a long way.
+
+I hung out, virtually, with a bunch of other folks who did the same thing - journaled about stuff; mostly daily. Eventually we syndicated our efforts into a "store-front" website called daynotes.com. I do believe my old friend Brian has kept it alive somewhere; I haven't checked lately.
+
+Despite the term's proliferance, I to this day deeply dislike the term blog. I can't say  exactly why - I just do. But as my daughter would say, "Whaat-evvvr".  I don't like that term much either, as it seems somehow flippant, but I have to admit, it cuts to the point rather well.
+
+### What tha' heck are you doing, Tom?
+
+One of my favorite authors wrote about what I term "ideas you really should be paying attention to and if you don't they're not apt to go away without some blood being spilt" (yes, I know, too wordy; but that's why Richard is a famous author and I am not). I'm paraphrasing from memory here, but it goes something like this:
+
+*If I can turn my back on an idea, if I can avoid opening the door on it, I won't even bother reaching for a pencil. But once in a while there's a great explosive burst of flying glass and wood splinters, and that idea storms through my front wall, grabs me by the throat, gets right up in my face, and gently says -- I will not let you go until you write about me...* (Richard Bach, *Illusions*, from the Preface)
+
+I've been getting those monsters in my face all too often lately, and they don't always talk to me so gentle. In the past, my writing - both personal and professional - have satiated those monsters.
+
+Suffice to say, I have a monster problem that's not going away. And I really don't like things that get in my face.
+
+### And so it begins
+
+So I've tossed the first rock in the pond. I already see the ripples racing toward me. I need a "framework" to hang this in. A front page that's easy to
+navigate. A layout that conveys the simplicity I believe in. A few graphics to add a little colour (yes, colour -- I'm Canadian). At some point I should gather all my old posts and put them somewhere, reference them from the framework I don't yet have. Translate them to HTML5 perhaps? Sigh.
+
+Patience Tom; everything in time. For now, I'm content to reflect on the fact it only took me 8 years to write this post.
+
+*Later.*

@@ -1,0 +1,26 @@
+---
+layout: post
+title: Horn Tooting
+---
+
+# {{ page.title }}
+
+<p class="meta">30 August 2011</p>
+
+I have a problem. It's not life-threatening, and it's not likely to induce any kind of personality disorder. But it's a problem nonetheless.
+
+I'm not very good at tooting my own horn.
+
+Ask any marketing guru or career specialist, and they'll tell you - beyond a shadow of a doubt - that being able to market yourself effectively is vitally important to the maintenance and feeding of a successful career path. OK. Fair enough. I'm still not good at it. Or maybe I've not yet found a career path compelling enough to push me over the edge.
+
+The fact remains, I have a gift. And unless I tell someone about that gift, it will remain a "dirty little secret" (well, maybe not dirty, but a secret nonetheless); hidden and unable to reach full potential.
+
+So what's my secret? I'm a writer. Specifically, according to industry recognized nomenclature, I'm a technical writer. I'm exceptionally good at translating the act of "how to do stuff" into words; words that can be understood by people, and reverse-translated. You read what I write, grok it at a cognitive level, and can then take that grok and reproduce the physical or intellectual motions I've described in words.
+
+All well and good, but what's significant about that?
+
+Well, depending on who you ask, technical writers are few and far between. Good technical writers are like oxygen in the earth's upper atmosphere. Rare. Or so some people I highly respect tell me.
+
+I branched my personal git repository about 6 weeks ago - started a new "development" branch, so to speak. My new branch is devoid of all traces of baby-sitting people, thinking for them, or being a fireman because the people I work for see no value in teaching people not to play with matches. I'm currently testing the stormy waters of the publishing industry - again. I'm not where I want to be (which is why the branch is tagged "develop"), but my mind is relatively clear again, and it feels good to stretch my neurons in a creative way.
+
+If you know someone who's looking for a good technical writer, drop me a line. I'm looking for somewhere to roost. I don't know much about crowing, but I lay some pretty decent eggs.
