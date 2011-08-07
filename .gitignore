@@ -1,4 +1,5 @@
 # Documents/tsyroid.github.com/.gitignore
 
-posts/asciidoc/
+_site/
+_drafts/
 
