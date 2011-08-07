@@ -1,0 +1,26 @@
+---
+layout: post
+title: Holding Out
+---
+
+# {{ page.title }}
+
+<p class="meta">06 August 2011</p>
+
+Yeah, I've been holding out. Kinda. More of a side-shuffle if you really pressing need to give it a term.
+
+My lofty vision of "blogging" again (Geesh I hate that word) got temporarily shuffled to the back-forty. Life kept insistently poking its finger in my pie of good intents. So it goes sometimes...
+
+I also had some technical wrangling to attend to. My "technical specification" for a candidate host site was simple and specific: (1) easy access from a variety of platforms; (2) seamless backend; easy to use on a daily basis; and (3) git support. The last one really sorted the wheat from the chaff and reduced the field dramatically. Thankfully, GitHub easily passed muster on all four specifications. So GitHub it was, and I set about putting the necessary framewrk in place. Next, I had to gain at least a passing aquaintence with the backend tools I'd be using (Jekyll, rdiscount, and a couple other low-leve Ruby add-ins). Again, with thanks to the developers behind the aforementioned technologies, the documentation provided was both coherent and informative. The last piece of the puzzle was site layout - the hangers for my "stuff".
+
+When it comes to web design, my preference is for - yeah, you guessed it - simple elegance. I don't like flash, and I don't like busy. Navigation aids are good, as long as they're not the focus of the page. Black backgrounds with crazy coloured fonts hurt my eyes. Plain and simple, please. The elegance part is always subtle and subjective. I guess I'd describe it as making simple look quietly rich.
+
+I stumbled on [Tom Preston-Werner's site](http://tom.preston-werner.com/) while surfing around for ideas. I felt at home there, and his design matched my needs to the letter - simple, elegant, and easy to navigate. As an added bonus, it was hosted on GitHub and built around Tom's creation, Jekyll. Tom has gracitiously allowed me to pilfer his layout for this site. I'll "make it my own" over time, but I couldn't ask for a better starting point.
+
+Once I understood the layout and how to work with it, the rest was just a matter of twiddle-time - modify a couple CSS settings, figure out directory structure, add the growing stash of posts I've been sitting on for the last month, push the whole works to "The Hub", and - presto-magic - here I is.
+
+I know. Contrary to the subtle feelings of accomplishment I'm experiencing right now, the boring, realistic part of my brain is tapping me on the forehead in an effort to remind me that building a web site is actually the easy part. Keepin it topped up with consistent, high quality content is where the real work begins. I'll do my best, Mr. Brain. Onward and upward.
+
+I have a couple more posts I left out of my initial push. They're still baking. Haven't determined yet if the recipe's all wrong, or they just need a little longer in the oven. If they make it through QC, I'll slot them in according to the date they were initially written.
+
+Cheers
