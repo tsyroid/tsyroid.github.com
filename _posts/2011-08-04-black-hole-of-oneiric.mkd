@@ -1,0 +1,36 @@
+---
+layout: post
+title: The Black Hole of Oneiric
+---
+
+# {{ page.title }}
+
+<p class="meta">04 August 2011</p>
+
+I had a few hours to kill yesterday and an itch to scratch, so installed the latest-greatest just-released Alpha 2 of Oneiric on *Opus*, my trusty T61 Thinkpad. I'm hesitant to call my actions a mistake. I learned a lot, and came away with a new sense of perspective, but Oy Vey (1) was the experience a time sink. From a use perspective, Oneiric is not even close to being baked yet. Yes, I'm fully aware alpha software is, by it's very nature not yet baked, and subject to a long warning string of "don't"s and "avoid"s and all manner of cautions. I'm not new to the trials and tribulations of dancing on the bleeding edge of software development.
+
+(1) Yiddish: An expression of great exasperation or frustration.
+
+### Historical Perspective
+
+I've been playing with pre-release, alpha, and beta software for the better part of 20 years. For the "old timers" out there, remember PC Tools? From the DOS 3.3 days? Well I tested alpha and beta releases for them. They arrived on a 3.5" floppy (yes, one), I dropped them into a newly created directory and played. When things broke or became unusable, I deleted the directory. Ahh, the magical days of old - delete a directory and the program's gone.
+
+I also spent a number of years writing "insider" documentation for IBM. They sent me pre-release software (enterprise-level stuff), I figured out how to install it, and attempted to configure it so it didn't crash, blow up, or eat data. When I was successful (not always), I documented all the steps I took so IBM engineers could replicate what I had done on their potential future customer installs. When things didn't work out so good, they had documentation to retrace my steps and fix problems.
+
+Fast forward five years. My distro of choice was Gentoo. It used to tickle me no end to build a system from scratch, from the ground up, and watch stuff compile. It frustrated me no end when things broke and I had to wait for someone else to fix the problem, which sometime took days, which in turn left my system borked until further notice. Unfortunately, I'm not a programmer, so when the compiler aborts with a cryptic reference to an error in a library I've never heard of, pointing to a string of code that I can only guess is written in Hebrew, I'm fully and completely stuck. I'm not easily deterred, though, and my drive to make things work always seemed to eventually bubble back to the surface.
+
+Quietly, subtly, the stuff that fueled my passions shifted. I still like playing with bleeding-edge stuff. I just prefer stuff that has a semblance of consistently to it. I don't expect everything to work or improve with each version bump. I have little toleration, though, for constant, insidious breakage. "Release early; release often" does not imply frequent releases of clearly broken code.
+
+I no longer have the time or inclination to spend a weekend building a new OS install from the ground up. BTDT. I know how it works, and I know how to do it, which was the intent behind earlier exercises. These days I want to install a distro, spend an hour tweaking it to my needs, and get on with the fun part - using it to do cool things. My criteria is simple: Bare metal to working, fully configured install in 2 hours or less. Which is the primary reason I use Natty. I know where most of the important configuration options hide, I have scripts built to automate my "core applications" install, I'm reasonably competent with apt-get and aptitude, and my current dataset can be copied from a USB, dropped into $HOME, and "just work" (with a few twiddles when necessary).
+
+### So As I was Saying...
+
+When I evaluate software in development, I have a reasonably high tolerance for breakage. I expect breakage, and I'm pleasantly surprised when it doesn't happen. But after 4 months of heavy code wrangling, I expect to see two things: (1) problematical issues that existed in a previous release cycle resolved or in a state of being resolved; (2) a well-defined framework in place to support upcoming changes. I see neither with Oneiric. Bugs and "unfinished" stuff in Natty are still present in Oneiric. And really core stuff in Oneiric is bust. Still bust. I've played around with Oneiric right from ground zero - the day the code base moved from the Natty tree to the new Oneiric tree. I'm not talking about a quick look-see from a live USB image here; I'm talking about several hours of diligent effort to install and use the OS. 10, 12, 15 times. Each time Oneirc has left me exasperated; I had to remove it to get anything - even basic stuff - done.
+
+"Well, you shouldn't be using alpha software on a production machine, Tom". True. But I don't quite wedge into that "don't, production" slot. See above. I accept breakage. Someone has to test stuff in a quasi-working environment. I do so in an attempt to contribute back to something that's provided me with thousands of hours of pleasure and learning over the course of 20 years. But damn it, it's got to be at least partially usable. Oneiric isn't. For me.
+
+Let me be clear here - I'm not bashing Oneiric or the Ubuntu devs in any way, shape, or form. What I am doing is looking back from a personal perspective; one that has some history attached to it. I started using Natty about three weeks after the code transition from Lucid. Pre-alpha. It worked. It broke some days, things were a bit awkward on others. But it was all workable. The proof of that is clearly in the pudding. I installed pre-alpha Natty in November last year. I'm still using it. Sure I've played around with Mint 11 and Fedora 15 and Debian Experimental and LMDE on occasion. But I always returned to Natty after a few hours or at most a few days. Not because I had any great attachments to the "Launcher" or whatever that fly-out thing is when you click on the symbol in the upper-left corner of the statusbar. I use Natty on a purely pragmatic level: it works, and it's the fastest solution (for me) to achieve the overall working package set I want.
+
+I have some serious reservations over where Canonical/Ubuntu are heading these days. They're not "shouting from the mountaintop" concerns; I don't work that way. I let things unfold as they need to. If I don't like what I see or how I see it done, I simply move on. But I do have concerns. I like Natty, and Oneiric has a lot of potential. But IMHO, someone, somewhere needs to spend a little time and effort on making what's already in place work without ruffles and bumps.
+
+*Later*.
