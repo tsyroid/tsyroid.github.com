@@ -1,0 +1,26 @@
+---
+layout: post
+title: Question not Answers
+---
+
+# {{ page.title }}
+
+<p class="meta">07 August 2011</p>
+
+Life is about asking good questions, not about providing definitive, or even good answers.
+
+I have a couple posters that hang on my wall. They're positioned such that I see them many, many times a day. That doesn't mean I read them every time I see them (unfortunately), but they're there; they remind me when I stop long enough to notice.
+
+The most important one says:
+
+*There is no learning if though originates from conclusions.*
+
+*-- J. Krishnamurti (from the book, Life Ahead)*
+
+Which, in essence, says if you base your thinking on conclusions, there is no where else to go. That's it. Full stop, with a period at the end of the sentence.
+
+Thinking about the above quote tonight, and coupling it with a whole passel of stuff I'd read throughout the day, made me realize that providing answers to (sometime difficult) questions is not necessarily the noble and lofty thing we think it is.
+
+Questions are more important than answers. They start a journey. They compel us to reach outward. Lollipops reward, but they cause an important journey to halt in its tracks.
+
+Think about it.
