@@ -7,7 +7,7 @@ title: The Black Hole of Oneiric
 
 <p class="meta">04 August 2011</p>
 
-I had a few hours to kill yesterday and an itch to scratch, so installed the latest-greatest just-released Alpha 2 of Oneiric on *Opus*, my trusty T61 Thinkpad. I'm hesitant to call my actions a mistake. I learned a lot, and came away with a new sense of perspective, but Oy Vey (1) was the experience a time sink. From a use perspective, Oneiric is not even close to being baked yet. Yes, I'm fully aware alpha software is, by it's very nature not yet baked, and subject to a long warning string of "don't"s and "avoid"s and all manner of cautions. I'm not new to the trials and tribulations of dancing on the bleeding edge of software development.
+I had a few hours to kill yesterday and an itch to scratch, so installed the latest-greatest just-released Alpha 3 of Oneiric on *Opus*, my trusty T61 Thinkpad. I'm hesitant to call my actions a mistake. I learned a lot, and came away with a new sense of perspective, but Oy Vey (1) was the experience a time sink. From a use perspective, Oneiric is not even close to being baked yet. Yes, I'm fully aware alpha software is, by it's very nature not yet baked, and subject to a long warning string of "don't"s and "avoid"s and all manner of cautions. I'm not new to the trials and tribulations of dancing on the bleeding edge of software development.
 
 (1) Yiddish: An expression of great exasperation or frustration.
 
