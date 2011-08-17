@@ -1,0 +1,19 @@
+---
+layout: post
+title: Don't Leave Footprints
+---
+
+# {{ page.title }}
+
+<p class="meta">15 August 2011</p>
+
+There's a centuries old teaching in Zen, which I call "The Sandbox Principle". The master presents the student with carefully raked patch of sand and instructs him (or her) to walk from one side to the other without leaving any footprints. Like most everything Zen, the principles behind the exercise have much larger implications than casual glance suggests.
+
+The deeper meaning here is "the world is a sandbox" and one should always strive to "walk without leaving footprints". Choose an analogy; they're almost infinite in number. Clean up your mess behind you. Don't step on other people's views or opinions. Respect nature. Recycle. If you don't lean toward the importance of recycling, mindfully choose what you buy. Yah-da, yah-da, yah-da.
+
+Am I soap-boxing on philosophy? Nope. That would be leaving footprints. I'm reflecting on a lesson I absorbed a long time ago; a lesson I sometime misplace. Life brings it back to me if I'm paying attention.
+
+I'm currently in the throes of editing a book for a publisher. It's an excercise in walking across a sandbox without leaving prints. It's absolutely vital I leave the author's "voice", intent, and message intact. When I do change things, even small things, I need to be sure it's (a) necessary, and (b) not altering anything vital to the original content. Relatively easy when it's a word to two here or there; exponentially more complicated (and risky) when you have to build a missing framework for the message. To top it all off, everything I do is bounded by effort-versus-cost and publication deadlines.
+
+All much easier said than done.
+
