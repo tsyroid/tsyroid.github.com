@@ -1,0 +1,22 @@
+---
+layout: post
+title: Borked, Pissed, and Stumped (In that order)
+---
+
+# {{ page.title }}
+
+<p class="meta">22 August 2011</p>
+
+My finely tuned, lovingly fed-and-cared-of Natty install blew up in my face yesterday.
+
+A borked install is not something I would normally spend a bunch of time and energy writing about, but this one's different. I've managed blown up just about every nook and cranny of Linux in my day, but I've always -- eventually -- found a way to put Humpty together again. Not this time. I still have no idea what caused Humpty to fall, but no matter how I approached the recovery, he remained stubbornly stuck where he lay.
+
+The problem started innocuously enough. I went to login early in the afternoon (can't remember why I logged out, but whatever), and instead of my desktop appearing, I got unceremoniously dumped back to the login screen. No warnings, no errors, nadda. Login prompt, password, black screen, back to the login screen. Mmm. Never seen this one before. Yes, I checked my password about 18 times. I then tried as 'root'. Login, desktop as it should be. I went back mentally and tried to recount every little thing I had done, updated, tweaked, or even opened in the last 2 or 3 days -- empty. I scoured my log files. I scratched and pondered for a long, long time. Tried a couple minor things. Tried a couple major things. Removed anything I had installed recently. Nope. I wasn't getting in. I backed out of the 3.0 kernel I had been running for a month. Nope. I then deleted every configuration file in my home directory, gnome related or otherwise. Nope. I even went so far as to kill my user account (and everything in home) and recreated it new. That effort got me back to my desktop, and thinking I had solved the problem, I began replacing files from backup and re-tweaking. Something, somewhere was scratching at my intuition, so I logged out and tried logging in again. Bzzzt. No joy. Locked out again. Same as before.
+
+I won't bore you with the gory details -- suffice to say I spent the rest of the day and long into the evening trying anything I could think of to solve the problem. By midnight I was prepared to reinstall from bare metal, but I really really needed to understand what went bump-in-the-night first. Because I sure as hell wasn't going to install from scratch, only to be locked out yet again. I also couldn't wrap my head around how installing from scratch was any different from installing a recent Clonezilla image. Yeah, I'd probably get something that was slightly different from the clone, but nothing I witnessed smelled like an application problem -- it appeared to be an authentication problem, and an insidious one at that.
+
+I slept on it, and woke up with... Nothing. Not even an ember of an insight.
+
+This morning, after a whole bunch more mulling, I installed LMDE. It works. I'm a bit like a fish out of water without the PPA resources I relied on so heavily with Ubuntu, but I've got something that's "good enough" for the moment. I can work again. In some cases the version numbers are a lot lower than I'd like; in some cases I found some stuff closer to the bleeding-edge than I had before (playing around with "pinning" and Debian experimental). So far, it's a wash.
+
+And yes, I did take another shot at Oneiric before settling on LMDE. Two attempts with two different build dates (both within the last week); I couldn't get either to finish the install process. One attempt didn't get past the partitioning screen, the second ran to within seconds of completion and then kindly informed me the Installer had suffered a serious stroke of sorts, and to please write and tell someone so they can fix it. Interestingly enough, it's exactly the same place Natty used to fail early in its development cycle. Nuff' said on that one, me thinks...
