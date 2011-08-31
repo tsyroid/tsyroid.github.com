@@ -1,0 +1,1211 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.5">
+<title>Designing with Principles</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #777777;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+tt {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+.monospaced {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([2-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName == 'DIV'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName == 'DIV' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Designing with Principles</h1>
+<span id="author">Ross Johnson</span><br>
+<span id="email" class="monospaced">&lt;<a href="mailto:ross.johnson@designlayers.com">ross.johnson@designlayers.com</a>&gt;</span><br>
+<span id="revnumber">version 4.1,</span>
+<span id="revdate">2011-08-23</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_chapter_2_design_not_graphic_solutions">CHAPTER 2: Design, not Graphic, Solutions</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>What this chapter covers:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+What is design?
+</p>
+</li>
+<li>
+<p>
+Function vs Form
+</p>
+</li>
+<li>
+<p>
+What makes design successful?
+</p>
+</li>
+<li>
+<p>
+How to design with goals
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>The first and most important layer in the hierarchy of design needs is functionality. If functionality sends your mind to thoughts of scripting languages, databases, and programming I don&#8217;t blame you. The functionality of a site is often used to describe the tasks that will be performed by website developers, not designers. This is in part due to the common segmented process in which websites are created.</p></div>
+<div class="paragraph"><p>Typically, the marketing department comes up with the idea, the user experience designers decide how it will work, the design department decides what it will look like, and the developers make it function. Thus when people talk about function with respect to a website, they are usually referring to developers or implying the development process as laid out above.</p></div>
+<div class="paragraph"><p>In actuality the function of the website should be at the forefront of everyone&#8217;s mind during the creation of the site. As you learned in the last chapter every site is created for specific reasons. In design the function of the site is not what the site does, but the reason that it exists. This is the functionality layer, which deals with the purpose of the site and the outcomes it&#8217;s designed to generate.</p></div>
+<div class="paragraph"><p>Design without function isn&#8217;t design at all; it&#8217;s just creating. Most sites are created in response to business needs. Businesses need to market their goods, services, build awareness, or sell online, and a website is a strong vehicle for the purpose. In the case of non-profits, organizations may need to recruit supporters and get donations. Even personal sites are created with a specific function in mind, which is typically a means to share personal information with friends and family.</p></div>
+<div class="exampleblock">
+<div class="title">Example 1. Functionality Layer Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>Functionality isn&#8217;t just programming and databases. Website functionality is actually a term that describes the sites purpose and desired outcomes.</p></div>
+</div></div>
+<div class="paragraph"><p>For most projects the site function is cut and dry: get more leads, sell products, increase membership, etc. In other words, a design ultimately serves a given purpose. Almost all designers innately know this on some level. What I want to convince you is how integrated that purpose needs to be with your design. What&#8217;s important to avoid is the mindset of creating another portfolio piece rather than an effective site, targeted at specific needs and a target group of users.</p></div>
+<div class="paragraph"><p>In extreme cases I have seen instances where people are not really designing; they&#8217;re playing around in Photoshop as a form of creating self-gratifying aesthetics. There is nothing wrong with doing this for a hobby, but many businesses and organizations end up paying for this personal expression and miss out on the benefits of a great website because of it.</p></div>
+<div class="paragraph"><p>Understanding the importance and role of functionality in web design is best explained through the exploration of design as a general practice. Websites (and their inherent graphics) are not the only things in the world designed to fulfill a specific function or target a given user base. In fact, all industries&#8201;&#8212;&#8201;in one form or another&#8201;&#8212;&#8201;use the principles of design to produce an end-product.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_design">What is "Design?"</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>If you were to ask ten people to describe what design is, I would wager you&#8217;d get ten very different answers. Given design literally shapes every aspect of how we live, it&#8217;s interesting to note that very few people really understand it. I describe myself as a designer, but from that statement people often assume I design anything from clothing to interiors. As fellow designers, I suspect you&#8217;ve experienced similar assumptions.</p></div>
+<div class="sect2">
+<h3 id="_design_defined">Design Defined</h3>
+<div class="paragraph"><p>I find it best to start any discussion about what a concept really is by looking at the definition.</p></div>
+<div class="paragraph"><p>Websters dictionary defines design as [to]:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+"create, fashion, execute, or construct according to plan"
+</p>
+</li>
+<li>
+<p>
+"conceive and plan out in the mind"
+</p>
+</li>
+<li>
+<p>
+"have as a purpose"
+</p>
+</li>
+<li>
+<p>
+"devise for a specific function or end"
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>As a young designer these definitions always confused me. Like many other web designers I thought about design from a purely visual standpoint. I was sure my job was to make graphics that were visually impressive. Even more experienced and less naïve designers than my former self get caught up in this misconception, as non-stylistic problems like usability and conversion rates are ultimately solved in a visual manor.</p></div>
+<div class="paragraph"><p>Interestingly enough, Websters dictionary doesn&#8217;t even mention visuals. Why is there nothing but talk of function, planning, and purpose? Does this mean that graphics are not important? Not at all, in fact you will learn later in this book that the graphic appeal of a site can play an integral role in the success of a site. What these definitions do tell you is that design isn&#8217;t just about visuals. Design is really about the purpose and intention of what you are creating. This doesn&#8217;t just apply to websites, but any design discipline from industrial to fashion, product to packaging.</p></div>
+<div class="sect4">
+<h5 id="_the_graphic_design_misconception">The Graphic Design Misconception</h5>
+<div class="paragraph"><p>There is a widespread misconception design is primarily concerned with creating pretty graphics. The web is a very visual medium, so really it isn&#8217;t surprising. Combine this with the fact that the web is extremely intangible and it&#8217;s hard to blame anyone for the misconception. By intangible I mean that you can&#8217;t hold, feel or possess the web. At times they barely feel like real entities. Not only are they are hard to conceptualize, when you think about a site your first reaction is likely a mental picture of some form. In fact the visuals tend to be the most concrete tangible element of an entire website (ignoring non-visual browsing such as screen readers). When someone describes a website they can only really do so based on visuals or it&#8217;s functionality.</p></div>
+<div class="paragraph"><p>This visual focus naturally attracts people who have an appreciation for pleasing imagery. Many people who choose to design on the web do so because they are creative, visual people. This certainly was the case for me.</p></div>
+<div class="exampleblock">
+<div class="title">Example 2. Functionality Layer Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>Many mistake web design as an extension of graphic design. In reality it is probably closer to a hybrid of industrial and software design.
+Another likely contributor is that web design is largely considered to be an evolution of print based design. Many traditional graphic designers have transitioned from print based work to the web. In many ways this is a very natural transition, as print designers are highly skilled in the elements of visual design. However the web really isn&#8217;t an extension of print design; it&#8217;s closer to a combination of industrial and software design.</p></div>
+</div></div>
+</div>
+<div class="sect4">
+<h5 id="_why_web_design_isn_8217_t_graphic_design">Why Web Design isn&#8217;t Graphic Design</h5>
+<div class="paragraph"><p>Web design requires the designing many aspects of a users experience with your creation than just the visual components. This is the overarching reason that web and graphic design are different practices.</p></div>
+<div class="imageblock" id="Figure-2.1" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_2-1.png" alt="figures/figure_2-1.png" width="800" height="600">
+</div>
+<div class="title">Figure 1. Print based graphic design has well established, simple behavior and functionality. With a brochure or report we know to consume the design in a top to bottom, left to right manner, turning the page when we want to proceed. The web is not as straight forward.</div>
+</div>
+<div class="paragraph"><p>If we examine print materials through our definitions of design, we can extrapolate that the purpose of graphic design is communicating information. This has many parallels to web design but it deviates in a key way: information is typically communicated in small amounts and sequentially. Meaning that with a brochure for example, you are likely to read each page in order of presentation. Other print collateral tends to be even simpler; you typically read the content top to bottom, left to right, and that&#8217;s the extent of it&#8217;s functionality. The functionality of print materials is very simple, well known, and consistent. Most of the time, layout combined with convention makes it self evident&#8201;&#8212;&#8201;just looking at the printed object is enough to understand how it works.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_web_design_is_it_8217_s_own_practice">Web Design is it&#8217;s Own Practice</h5>
+<div class="paragraph"><p>Websites differ; you are designing more than just a message. You design the behavior, interaction, function, and purpose in addition to the communication. A brochure has a single purpose and use; communicate information, turn the page to continue. Websites are creations people use for a wide range of specific outcomes and interact with in different ways.</p></div>
+<div class="paragraph"><p>When industrial designers are challenged with creating a new object they must evaluate all aspects of that object, including:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+What people want to get out of it
+</p>
+</li>
+<li>
+<p>
+How are they going to use it / interact with it
+</p>
+</li>
+<li>
+<p>
+Technical and budget constraints
+</p>
+</li>
+<li>
+<p>
+How will it be manufactured
+</p>
+</li>
+<li>
+<p>
+What material will it be made from
+</p>
+</li>
+<li>
+<p>
+What it should look like for aesthetic, structural, and functional reasons
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>While designing on the web is a bit simpler than industrial design, you have many of the same considerations, including:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Site goals
+</p>
+</li>
+<li>
+<p>
+Interaction points (and abilities)
+</p>
+</li>
+<li>
+<p>
+Reliability
+</p>
+</li>
+<li>
+<p>
+Platform
+</p>
+</li>
+<li>
+<p>
+User base
+</p>
+</li>
+<li>
+<p>
+Usefulness
+</p>
+</li>
+<li>
+<p>
+Messaging &amp; branding
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>The "products" that come out of web design are completely virtual, imposing a whole new set of requirements neither print nor industrial design face. Web design is truly it&#8217;s own practice and must be considered as such, and not just the evolution of graphic design.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_designers_are_problem_solvers">Designers are Problem Solvers</h3>
+<div class="paragraph"><p>By definition design is the creation of something for a specific desired outcome or purpose. To expand that definition, the outcome is the desired solution that justifies designing in the first place. Thus your job is to create solutions to the problems that warrant them. Unfortunately, this job is often assigned to the marketing or user experience department. The designer is then left to "pretty up" everyone else&#8217;s ideas. Yet this isn&#8217;t the role of a designer; You can&#8217;t design a solution through visuals alone, you must do so by designing the "function" of the site, start to finish.</p></div>
+<div class="exampleblock">
+<div class="title">Example 3. Functionality Layer Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>A designer&#8217;s job is to solve complex problems. This is done by through creating something that has specific functions intended to cause specific desired outcomes.</p></div>
+</div></div>
+<div class="paragraph"><p>The function of the site is your solution to that need and desire. Everything the site can do, every element the site contains, should be a part of that solution. Any decision you make that doesn&#8217;t speak to the solution is either decoration or feature creep, adding to user confusion, maintenance costs, and page load times.</p></div>
+<div class="paragraph"><p>The function of the site is made up of two different perspectives based on two very different groups that your design will affect.</p></div>
+<div class="sect4">
+<h5 id="_two_functionality_perspectives">Two Functionality Perspectives</h5>
+<div class="paragraph"><p>A site&#8217;s purpose can be split into satisfying the needs of two very different groups: stakeholders and users. The stakeholders are the people who are commissioning the creation of the site&#8201;&#8212;&#8201;the individual(s) paying your bills (or salary). The users are the people who will actually visit the website and interact with it once created. You can be sure that these two groups will almost always have different, often conflicting, goals.</p></div>
+<div class="paragraph"><p>Successful sites find away to align the goals of users and stakeholders. Stakeholder goals can often be boiled down to making or saving money. Even branding websites, which are intended to build awareness, have the high level goal of selling more product. User goals are centered around accomplishing specific tasks in return for the time and effort they spend on the web.</p></div>
+<div class="paragraph"><p>To put this in context, on an e-commerce website the stakeholders want to sell the products they have online. The user tasks are a bit more involved and likely include:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Browsing products to find ones that interest them
+</p>
+</li>
+<li>
+<p>
+Learning enough about the products to make a decision
+</p>
+</li>
+<li>
+<p>
+Researching the company to ensure they are trustworthy
+</p>
+</li>
+<li>
+<p>
+Check out and purchase the products
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Stakeholders might decide their goal of selling product is more important than the user&#8217;s experience and try and to "up-sell" them throughout the checkout process. This could potentially be damaging to the user experience if they just want to make a purchase with as little effort and intervention as possible. It may be so distracting it prevents some users from purchasing at all. Instead stakeholders could align their goals with the user by providing relevant but unobtrusive related products at the product pages.</p></div>
+<div class="paragraph"><p>The Skype.com website is an example of a site that compromises user needs. Users coming to the site are typically looking to download client software, signup for an account, or manage their existing account. The homepage is completely focused on paid Skype services and has very little to help users accomplish tasks not associated with those paid-for services.</p></div>
+<div class="imageblock" id="Figure-2.2" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_2-2.png" alt="figures/figure_2-2.png" width="800" height="600">
+</div>
+<div class="title">Figure 2. The Skype website is completely focused on selling user paid services, ignoring other common tasks such as registering, downloading software, and logging in to an existing account. The areas circled in white are the only areas on the entire page that are not focused on selling Skype services.</div>
+</div>
+<div class="paragraph"><p>Not all sites are focused on sales. In the media industry, many news websites are advertising supported. The stakeholders hope to maximize their revenues by selling the greatest volume of advertising. Users who visit the site are looking to consume information, which the advertising disrupts. In this case it seems that the two sides are at odds. The stakeholders want to show the users as much advertising as possible and the users don&#8217;t want to see any advertising. Aligning the two goals can appease both sides. By providing relevant and interesting advertising to the users you can actually enhance the experience. Most users don&#8217;t mind advertising if it is relevant to their personal interests. The problem is that most advertising is focused on volume, not relevance.</p></div>
+<div class="paragraph"><p>Typically, stakeholder goals are only achieved when users can accomplish whatever it is brought them to the site in the first place. For example:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+When a user finds the product they want and buys it, sales increase and the stakeholders profit
+</p>
+</li>
+<li>
+<p>
+When a user finds the information they&#8217;re seeking and initiate a request for more information on a product or service, the stakeholders get a lead
+</p>
+</li>
+<li>
+<p>
+When a user is interested enough in an advertisement to click it, the stakeholders can justify the cost of advertising on the site.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Note that in every statement above, user interaction or response in turn generated something of value to the stakeholder. Because stakeholder success is heavily based on actions performed by the user, these considerations must come first when designing. It can be easy to focus on the stakeholder as they are the one paying for your expertise, but their best interests are served by focusing on the user.</p></div>
+<div class="exampleblock">
+<div class="title">Example 4. Functionality Layer Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>Remember that when designing you should be focusing on two groups of people, the ones who are commissioning the site to be built (the stakeholders) and the people who will be using the site (the users). Your job is to create something that delights them both.</p></div>
+</div></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_learning_to_love_the_user">Learning to Love the User</h3>
+<div class="paragraph"><p>Great designers love their users. In fact many websites fail because they are focused on what the stakeholders need and everyone completely misses the fact the site is useless to most people. The goal of any design project, regardless of medium, is to create something actually used by your intended audience.</p></div>
+<div class="paragraph"><p>Loving the user means understanding what they want out their visit. Specifically, what are their goals and needs? People visit a website because they expect to get something in exchange for the effort put forth. The technical term for this is the "cost / benefit" principle, discussed in detail later in the book.</p></div>
+<div class="paragraph"><p>To understand the user you must start by identifying their goals&#8201;&#8212;&#8201;in other words, the end result they expect in exchange for their efforts. Common examples include:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Finding information
+</p>
+</li>
+<li>
+<p>
+Booking a vacation
+</p>
+</li>
+<li>
+<p>
+Finding movie times
+</p>
+</li>
+<li>
+<p>
+Deciding what movie to see
+</p>
+</li>
+<li>
+<p>
+Purchasing a product
+</p>
+</li>
+<li>
+<p>
+Contacting a potential service provider
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Rarely are users able to accomplish their goals immediately. Instead most goals are made up of smaller steps, which in turn combine to from a "final solution". These smaller steps are often termed "user tasks". So a user looking to buy a product online might do so by completing the following sub-tasks:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Research brands and options
+</p>
+</li>
+<li>
+<p>
+Decide on which product to purchase
+</p>
+</li>
+<li>
+<p>
+Find the best price or most trustworthy retailer
+</p>
+</li>
+<li>
+<p>
+Navigate to the chosen retailer site and find the desired product
+</p>
+</li>
+<li>
+<p>
+Complete a checkout process
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Knowing what the users goals are and what tasks will contribute to those goals allow you to easily address the usability and proficiency needs covered later in this book. Before making the goals and tasks easy you should make sure they are even possible. An e-commerce site could leave out all the relevant information about a product leaving a user without enough information to make an informed decision.</p></div>
+<div class="paragraph"><p>If you haven&#8217;t run into a situation where the client wants to put their needs before the users I envy you. Often times this sticking point is reduced to "I sign your checks, do what I say" ultimatums. Next time this comes up, remind your client that the user signs the clients checks; it&#8217;s in their best interests to pay attention to user needs.</p></div>
+<div class="paragraph"><p>Of course the goals of the stakeholders are still important (almost equally so), but there must be a balance. It is true that if the site doesn&#8217;t appease the users they won&#8217;t come and use it, but if the site doesn&#8217;t appease the owners they won&#8217;t invest the time to create it or keep it operational. It would be nice if all sites were created for the sole purpose of making users happy but that simply doesn&#8217;t alight with reality. You must design so your clients receive a return on their investment.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_make_money_or_save_money">Make Money or Save Money</h3>
+<div class="paragraph"><p>We live in a capitalist society so it&#8217;s reasonable to say that most websites wouldn&#8217;t exist at all if those that paid for them didn&#8217;t expect anything in return. As mentioned earlier that return usually falls into one of two buckets: making money or saving money. There are exceptions of course, such as changing public opinion, encouraging involvement, or other philanthropic reasons, but such cases are not the norm.</p></div>
+<div class="paragraph"><p>It doesn&#8217;t always have to be a direct relationship to making or saving money. A website with the goal of improving customer support might seem unrelated to financial gains. However digging deeper into what motivates improvement in customer support reveals the end goal is to increase sales (make money) or reduce labor requirements (save money).</p></div>
+<div class="paragraph"><p>When addressing stakeholder needs it&#8217;s important to find a balance between investment and users. I advocate favoring the users needs where possible. Some of the most innovative design solutions are created at this point in the process.</p></div>
+<div class="paragraph"><p>For example, you&#8217;ve been tasked with designing a site. The primary agreed-upon purpose is to generate sales leads. One approach would be to require the user to submit their contact information at some key point in the navigation process. This wouldn&#8217;t be very effective, as those who did take the time to fill out the registration form wouldn&#8217;t necessarily provide accurate (or even real) contact information. As an alternative, you could offer something of value in exchange for their contact details. Users in turn feel compelled to repay you by supplying accurate information (based on the reciprocity principle). This is a common way to increase leads a company gets in a way users can accomplish their goals as well. Specific examples of what could be offered in exchange include:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+A downloadable whitepaper
+</p>
+</li>
+<li>
+<p>
+Access to a premium tool
+</p>
+</li>
+<li>
+<p>
+A free trial of the software / service
+</p>
+</li>
+<li>
+<p>
+Free consultation / analysis / report
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>If you had designed the site without considering the goal of lead generation, the end result might be a site that gives away these incentives openly. While this is great for the user, it may also result in an end-product that doesn&#8217;t generate many leads. Designing with the end-product in mind&#8201;&#8212;&#8201;from the early stages of conception&#8201;&#8212;&#8201;solutions that benefit all parties involved tend to drive the resultant solutions.</p></div>
+<div class="imageblock" id="Figure-2.3" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_2-3.png" alt="figures/figure_2-3.png" width="800" height="600">
+</div>
+<div class="title">Figure 3. Salesforce.com allows you to try their software for 30 days in exchange for your contact information. The company uses the information gathered to follow up with people who have tried the software to try and make a sale.</div>
+</div>
+<div class="paragraph"><p>You may be wondering how the visuals of the site play a role in design. If design were only an exercise in making something functional all sites would be in black on white and use a common typeface. The two sides of design are often referred to as function and form. Understanding both these concepts will help shape your designs as they evolve.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_the_evolution_of_form">The Evolution of Form</h3>
+<div class="paragraph"><p>Form is the visual manifestation of a designed object. In industrial design, form is the shape, material, texture, color, and structure of an object. On the web, form is every visual element on a given page. While most commercial sites have an intentionally designed form it is possible to have an undesigned form. A site that is pure text and has no styling technically still has a form.</p></div>
+<div class="paragraph"><p>With the invention of the microchip the meaning of design form has evolved from the original use. For designers, it used to be the form of an object provided <strong>affordance</strong> to the function. Affordance is how the form of an object provides its function. For example, spoon&#8217;s form has to be designed in a way that allows it to hold water. Likewise a chair needs to provide a flat surface so you can somehow physically sit on it. Additionally looking at these designed objects it would be self-evident what one is supposed to do with them.</p></div>
+<div class="paragraph"><p>With electronics we are no longer required to use form as a method of functionality. Rather than designing the form of the object people directly interact with, you now design the a representation of the object that is in turn interacted with. You probably know this better as "the interface," and it doesn&#8217;t have to take on a specific form in order for it to function. Where a light switch needs a lever for someone to manipulate, which in turn controls a light, on the web a button can take on any form the designer wishes and still act as a button.</p></div>
+<div class="imageblock" id="Figure-2.4" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_2-4.png" alt="figures/figure_2-4.png" width="800" height="600">
+</div>
+<div class="title">Figure 4. A spoon is constrained in it&#8217;s form, as the shape must be convex so the user can hold liquid. The interface of a website isn&#8217;t constrained in form. On Barbie.com navigation takes the form of buttons that don&#8217;t look anything like typical navigation aids.</div>
+</div>
+<div class="paragraph"><p>This freedom from physical constraints led to widespread abuse in the early days of the web. Just because you can have a button that doesn&#8217;t look like a button doesn&#8217;t mean that you should. You do need to both understand and respect design form on the web. Web form can be evaluated from three different perspectives: aesthetics, communication, and behavioral.</p></div>
+<div class="exampleblock">
+<div class="title">Example 5. Functionality Layer Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>In design form is the visual style, layout, and behavior of every element on a page. In other design disciplines form often refers to the physical properties of an object such as texture and shape.</p></div>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_aesthetic_design">Aesthetic Design</h3>
+<div class="paragraph"><p>As highly visual beings, what we see is constantly being processed and analyzed by our brains. We are so visual that people can have unconscious mental and physical reactions as a result of something they see. Some colors have been known to actually increase cognitive capabilities by those viewing them (Mehta and Zhu, 2009). Humans are naturally draw to objects that are visually appealing to them. Demonstrating the psychological hold that aesthetics have on us, users naturally perceive a beautiful website to be easier to use than a drab one even if this isn&#8217;t the case (as dictated by the beauty-usability principle). Site usability can be improved simply by having beautiful visuals.</p></div>
+<div class="paragraph"><p>All things equal, a great looking site will outperform a drab one. The key point to note here is that while visuals might contribute to a website&#8217;s success, they are rarely the <strong>cause</strong> of this success. So why do aesthetics tend to be a primary focus of many design projects?</p></div>
+<div class="paragraph"><p>The problem is that website visuals are often assessed from an artistic perspective. Viewers subconsciously evaluate the design much like they would a piece of artwork.</p></div>
+<div class="exampleblock">
+<div class="title">Example 6. Functionality Layer Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>The visual design of a website is often assessed in the same manor one would evaluate art. While there is overlap between fundamentals of creating art and visual design the primary purpose of web design is to create something that serves a purpose, not necessarily to create something visually pleasing.</p></div>
+</div></div>
+<div class="paragraph"><p>They may consider:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Do I like the color scheme?
+</p>
+</li>
+<li>
+<p>
+Does it feel balanced?
+</p>
+</li>
+<li>
+<p>
+Do I like the photography?
+</p>
+</li>
+<li>
+<p>
+Is this my style?
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>I would argue that you would probably go through a very similar process if you were deciding to purchase a piece of art for your personal collection. The only real requirement or function is that you like it when you see it. You may like it for different reasons (texture, composition, colors, or subject matter) but really all that matters is that you do in fact like it.</p></div>
+<div class="paragraph"><p>The web is opposite in this regard. How it looks to you or even the client matters very little. The purpose of a website extends well beyond being visually pleasing. Being visually pleasing may assist the goals of a website, but it rarely completes them. A website is almost never created with the sole purpose of looking good.</p></div>
+<div class="imageblock" id="Figure-2.5" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_2-5.png" alt="figures/figure_2-5.png" width="800" height="200">
+</div>
+<div class="title">Figure 5. Mystery meat navigation is a common usability blunder. This is the practice of having navigation items that are not clearly labeled until you roll your mouse over them. Users are not able to see what is on the site or what they should click on until they have taken the time to hover over every object making it difficult to find specific sections on the site.</div>
+</div>
+<div class="paragraph"><p>Many times design aesthetically driven design sacrifices usability and site objectives for style. The once common practice of "mystery meat" navigation is a classic example of this. As seen in figure 2-3 mystery meat navigation was the practice of creating menu items with no labels until you moved your mouse over them. The design might look clutter free, but it isn&#8217;t intuitive.</p></div>
+<div class="paragraph"><p>Think about the number of times you listened to users (or peers) complaint about a website. How many of those complaints centered on usability as opposed to visuals? There are plenty of successful websites that have uninspiring design; Drudgereport.com, Craigslist.org and Wikipedia.org come to mind. The designs are lacking in color, nor do they have an interesting layout. Yet they became successful because they did what they were intended to do really well. In short, they are usable.</p></div>
+<div class="sect4">
+<h5 id="_how_aesthetics_help">How Aesthetics Help</h5>
+<div class="paragraph"><p>Just because aesthetics are not <strong>the</strong> most important part of a design doesn&#8217;t mean they are not important. Provided you address the other layers of design, compelling aesthetics can amplify the success of a site. Many companies have completely changed the marketplace by focusing on the aesthetic form of their products. Apple intentionally designed the headphones of the iPod to be clean, minimal, yet identifiable. This was so successful that it actually became trendy to be seen wearing those headphones. Looking to cash in on this trend companies even began manufacturing replicas.</p></div>
+<div class="paragraph"><p>A visually pleasing design is memorable, emotionally engages the viewer, and increases credibility. It reassures users that time, effort, and care was put into how the organization or company is represented on the web. Aesthetics need to be respected and used to enhance the website. Even though it isn&#8217;t the primary focus of the site, it still needs to support the experience and objectives.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_communication_design">Communication Design</h3>
+<div class="paragraph"><p>Visual design at its core is a form of communication. Before there was spoken language people communicated using graphics and symbols. To this day humans unconsciously interpret and look for reason in everything before us. A website that is designed beautifully but communicates the wrong message can actually be more detrimental than an ugly one. Think about design as a universal language that people can see and interpret.</p></div>
+<div class="imageblock" id="Figure-2.6" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_2-6.png" alt="figures/figure_2-6.png" width="600" height="600">
+</div>
+<div class="title">Figure 6. Even if you don&#8217;t speak Russian you can get a good sense of what these sites are about and the companies behind them from the design visuals.</div>
+</div>
+<div class="paragraph"><p>To demonstrate this point, look at <a href="#Figure-2.6">[Figure-2.6]</a>. The websites cater to a variety of different languages and unless you are multi-lingual you probably can&#8217;t read the content. You can however get a strong sense as to what they are about strictly from the visuals.</p></div>
+<div class="paragraph"><p>If you were to come across a website for a local dentist that had a fun and friendly feel to it, you would naturally expect the people involved in the practice to have similar personalities&#8201;&#8212;&#8201;fun and friendly. If a subsequent visit revealed all the dentists there were all business and not at all personal, you&#8217;d be upset and unlikely to recommend them or return. The visuals of the site communicated the practice was friendly and fun; that in turn prompted you to visit their office. But you didn&#8217;t get what you were looking for. Conversely, people who are looking for an "all business, get in, get out" business practice would never consider booking an appointment because the website communicated they were the opposite.</p></div>
+<div class="paragraph"><p>You may end up with a design that you absolutely despise, only to find that it resonates with the people you designed it for. You probably don&#8217;t fancy the design for children&#8217;s TV network Nick Jr. but it no doubt resonates with the target audience of kids and young parents.</p></div>
+<div class="imageblock" id="Figure-2.7" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_2-7.png" alt="figures/figure_2-7.png" width="800" height="600">
+</div>
+<div class="title">Figure 7. The Nick Jr. website was designed to appeal to children and young parents, and probably doesn&#8217;t resonate with other groups. The designers didn&#8217;t create something they personally liked, they created something their target audience would.</div>
+</div>
+<div class="paragraph"><p>The look of a website needs to be chosen carefully. Visuals have the potential to stir up a huge range of emotional response. Thinking about our friendly dental office you may want to calm a user who is anxious about their visit. Using sooth visuals, like cold colors and soft edges, you can actually calm an excited user. The opposite approach, hot colors and sharp edges, communicate intensity. This design style while&lt;coma&gt; effective in the right situation&lt;coma&gt; would likely upset our anxious user and scare them. You can imagine how the wrong visual approach would lead to a horribly unsuccessful website.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_2_1_8_behavioral_design">2.1.8 Behavioral Design</h3>
+<div class="paragraph"><p>How a design feels to a user isn&#8217;t determined by graphical treatment alone. The way the site responds to user interactions has just as much influence. I describe this as "behavioral design" and it encompasses the entire experience of a website. Behavioral design is a focal point of industrial design, where how an object feels to use (it&#8217;s texture, weight, and form) is a compelling part of the users experience.</p></div>
+<div class="paragraph"><p>The practice of designing an "entire experience" is well demonstrated by car manufactures. Car designers design every detail that goes into interacting with a vehicle. When they design a switch, they are aware of how it feels to touch and press them. Sound engineers carefully design the "thunking" noise doors make when closed. Even the exhaust system is designed to ensure the engine note is exactly as intended. Everything is designed&#8201;&#8212;&#8201;not just how it looks, but how it feels. Everything is a potential conduit to your senses.</p></div>
+<div class="imageblock" id="Figure-2.8" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_2-8.png" alt="figures/figure_2-8.png" width="800" height="200">
+</div>
+<div class="title">Figure 8. Design agency Rokkan uses subtle motion and color fades to create smooth transitioning interactive elements, which creates richer communication and experience.</div>
+</div>
+<div class="paragraph"><p>You should put that same level of detail into your websites. For example, rather than having instantly appearing dropdown menus, have it fade in. A slow transition embodies the "soft focus" desired in the dentist example above. Additionally, upon hovering, links could fade between colors rather than changing instantly. This is an area of web design that is often missed because we tend to focus too much on just the visuals rather than the entire sensory experience.</p></div>
+<div class="paragraph"><p>A great example is the digital agency Rokkan&#8217;s portfolio (see <a href="#Figure-2.8">[Figure-2.8]</a>). The design is nice, but the real beauty is the experience of using it. Placing your cursor over a thumbnail causes a caption to smoothly roll in from the left. Move your cursor off and the caption smoothly slides out in the same direction.</p></div>
+<div class="paragraph"><p>Rokkan could have done less work, leaving the caption to display instantly. Instead, they designed the experience in addition to the visuals. Their site, while a single page, truly embodies the idea of experiential design. The level of detail in their portfolio is no different than designing the "thunk" of a door closing.</p></div>
+<div class="paragraph"><p>Form can be visually stimulating, communicative, and sensual. Great form does not&#8201;&#8212;&#8201;by itself&#8201;&#8212;&#8201;make a website successful. The best design comes from a combination of great function and stunning form.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_combining_form_amp_function">Combining Form &amp; Function</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The six layers of design encompass both the function and form of design. It is important to know that every choice you make has implications. For example, some visual treatments while aesthetically pleasing, effect the reliability of the site. Design is a unified system, each layer enhancing the others for a greater whole. Designing with the six layers means combining the needs of function with the enhancements of form.</p></div>
+<div class="imageblock" id="Figure-2.9" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_2-9.png" alt="figures/figure_2-9.png" width="800" height="600">
+</div>
+<div class="title">Figure 9. Websites are engaging for both form and function (and ideally both). Kayak.com makes finding plane tickets easy, but has fairly plain form. Bing.com is not regarded as the best search engine available, but has visually interesting imagery.</div>
+</div>
+<div class="paragraph"><p>People love websites for both functional and form reasons. Travel website Kayak.com is popular for functional reasons. It is not just usable, it actually makes people better at purchasing plane tickets. I wouldn&#8217;t call the site ugly, but the form does little to engage the user. Bing.com is a search engine popular for it&#8217;s form. The use of inspiring photos for backgrounds does a great job engaging users emotions. Many users of Bing.com confess they use the site because it is soothing, while openly admitting Google is a better search engine.</p></div>
+<div class="paragraph"><p>The most successful sites combine function and form for the best experience. When combined, websites can not only make the users lives easier, but they can be emotionally engaging. When the function of a website is valuable, users are naturally drawn to it. With well designed form interacting with the site is easy, enjoyable, and aesthetically pleasing. Overall, the experience is delightful. A delighted user is an asset to any website, as they will, in all likelihood, share their experience and in many cases, become a repeat customer. This formula, combined and multipled by thousands of users, is what makes a website successful.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Functionality is the reason you design, there is a specific outcome you hope to create. Thus design starts through understanding functional needs. Think of functionality as a roadmap, marking the destination and pathways of how to get there. Designing with out a roadmap leads to random destinations. The final design may have redeeming qualities, but it won&#8217;t be as effective had you planned.</p></div>
+<div class="exampleblock">
+<div class="title">Example 7. Functionality Layer Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>All design exists to perform a specific function. That function is based on the needs of the website stakeholders and those who will actually use the design. Because function is the core of all design every element of a site should support that intended function. Doing so addresses the functional needs of design.</p></div>
+</div></div>
+<div class="paragraph"><p>Additionally, a roadmap is invaluable when working with larger teams or clients. With the goals in agreement, you can justify your design decisions based on them. In particular helping combat objections due to personal preference. The roadmap doesn&#8217;t just clarify <strong>your</strong> vision, but everyones involved.</p></div>
+<div class="paragraph"><p>By designing the functionality first, all decisions can be qualified by end goals. Deciding to add a slideshow is simple if you know it will help achieve the site goals. For this reason, all aspects of a site tie back to functionality; Including content, graphics, layout, photos, etc&#8230; everything influences success or failure. Only by making decisions based on functionality, can you create the most effective site possible.</p></div>
+<div class="paragraph"><p>Now that you know the functionality layer needs, you are better equipped to explore the principles used to address them. More importantly, how to integrate functionality into your design process.</p></div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr></div>
+<div id="footer">
+<div id="footer-text">
+Version 4.1<br>
+Last updated 2011-08-23 13:57:57 MDT
+</div>
+</div>
+</body>
+</html>

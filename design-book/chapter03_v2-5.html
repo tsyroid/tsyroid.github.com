@@ -1,0 +1,1188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.5">
+<title>Designing with Principles</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #777777;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+tt {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+.monospaced {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([2-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName == 'DIV'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName == 'DIV' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Designing with Principles</h1>
+<span id="author">Ross Johnson</span><br>
+<span id="email" class="monospaced">&lt;<a href="mailto:ross.johnson@designlayers.com">ross.johnson@designlayers.com</a>&gt;</span><br>
+<span id="revnumber">version 2.5,</span>
+<span id="revdate">2011-08-23</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_chapter_3_find_the_core_of_your_design">CHAPTER 3: Find The Core of Your Design</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This chapter covers</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+What makes up functional design?
+</p>
+</li>
+<li>
+<p>
+Identifying goals and tasks
+</p>
+</li>
+<li>
+<p>
+Focusing the functionality
+</p>
+</li>
+<li>
+<p>
+Designing affordance
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>No aspect of design impacts success more than functionality. Without it, design lacks direction and focus. In previous chapters I referred to design as problem solving. Stakeholders hope that commissioning a website will solve a problem and users expect the effort they spend to visit a site will either help them resolve a problem, or provide insites into the information they seek. Functionality is what solves these problems. But in order to design the functionality, you must know what users and stakeholders hope to gain from the site. Both parties have goals functionality must address. Addressing needs is the core of design and this chapter teaches you how to design that core.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_goals_lead_to_great_design">Goals Lead to Great Design</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Designing the functionality layer is the process of coming up with a plan that will best accomplish the objectives of the stakeholders and users. If you don&#8217;t have clearly defined goals it&#8217;s extremely difficult to make good design decisions. You are, in essence, relying solely on luck and good fortune.</p></div>
+<div class="paragraph"><p>If you&#8217;re working on a marketing site for a company that obtains new clients through seminars and an online contact form, clarify which is more important. Both methods potentially generate business, but it is unlikely they are equally as effective.</p></div>
+<div class="paragraph"><p>In the previous chapter we looked at why your design needs to satisfy both stakeholders and users. In this chapter you will learn how to identify specific user and stakeholder goals, often referred to as "Key Performance Indicators."</p></div>
+<div class="exampleblock">
+<div class="title">Example 1. Functionality Layer Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>The age old quote "If you fail to plan, you plan to fail" is true on the web. Setting goals is the first step in planning a successful website.</p></div>
+</div></div>
+<div class="sect2">
+<h3 id="_focus_design_decisions">Focus Design Decisions</h3>
+<div class="paragraph"><p>Setting specific goals focuses the entire design process and will give you more ideas along the way. The goals can be used to gauge what should be included in the design, and what should be removed (or excluded). This forces you to consciously include or exclude with <strong>intent</strong>. In the end, your design will reflect this conscious effort, which in turn strengthens the site as a whole.</p></div>
+<div class="paragraph"><p>The effect of goal setting is well demonstrated outside the world of web design. Psychologists estimate that 95-97% of people who do not have clearly defined goals fail to achieve what they want; the 3-5% that do, succeed. While I haven&#8217;t done the studies to prove it I would wager you would find similar statistics with websites.</p></div>
+<div class="paragraph"><p>After establishing the high level goals, you can uncover what needs to be on the site to support them. Such as:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+If the function is online sales, you need a shopping system, a payment gateway, product information, and an inventory system.
+</p>
+</li>
+<li>
+<p>
+If the function is lead generation, you need contact information, a list of services, testimonials, and company background.
+</p>
+</li>
+<li>
+<p>
+If the function is to reduce tech support costs, you need a knowledge base of common questions, online chat, etc.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>As you can see, addressing functionality needs isn&#8217;t always done with technology. Just having the right content can be enough. In the case of lead generation, having the company phone number in a visible location fulfills functionality needs on some level.</p></div>
+<div class="paragraph"><p>The website shown in figure 3-1 functions to increase attendance for a local film festival. The site doesn&#8217;t have to sell tickets directly to meet functionality needs. It just has to have content that convinces users to leave the house that night.</p></div>
+<div class="imageblock" id="Figure-3.1" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_3-1.png" alt="figures/figure_3-1.png" width="800" height="600">
+</div>
+<div class="title">Figure 1. Even though you can&#8217;t order tickets on this website there is enough information for people to decide if they want to attend or not.</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gauge_website_success">Gauge Website Success</h3>
+<div class="paragraph"><p>After identifying broad, high level goals you can develop key performance indicators (KPI&#8217;s.) Key performance indicators are the measurable expectations that the stakeholders hope to achieve through their website. An ecommerce site will have a high level goal of selling products online. The KPI might measure the volume of sales, for example "Increase online sales by 25%, to $5,000 per month."</p></div>
+<div class="paragraph"><p>KPI&#8217;s give you context into how the site needs to perform to be successful. Modest goals need a difference approach than ambitious ones. For example, a different design solution is required for stakeholders looking to double their monthly sales compared to a 10% improvement.</p></div>
+<div class="paragraph"><p>Rather than focusing all your effort on the homepage design, you may discover that product pages have the greatest potential to increase sales. If a client had an unlimited timeframe and budget you could focus on all aspects of the site but I wouldn&#8217;t count on finding that type of project (and if you do, don&#8217;t let that client go.)</p></div>
+<div class="paragraph"><p>Additionally KPI&#8217;s give you and the client a way to see if the design met, exceeded or fell short of their expectations. In many ways, KPI&#8217;s can be a marketing tool for you. They can lead to great case studies or even additional work. Many clients are happy to invest more to reach their goal provided they are seeing a return on previous investments.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_prevent_tactic_vision">Prevent "Tactic" Vision</h3>
+<div class="paragraph"><p>Functionality is often approached with a "tactic" mindset. Tactic-vision occurs when the planning of the website is focused on what should be on the site with no regard as to why. If stakeholders tell you they want a photo gallery, news section, and employee bios they are using tactic-vision. They have some sense that those items might help achieve their goals but they haven&#8217;t thought about why.</p></div>
+<div class="paragraph"><p>When this happens it is your job to focus the conversation back to the goals. You can evaluate if a photo gallery will help sell products. If not, there isn&#8217;t a reason to include it. The process is then shifted towards what is required to meet the goals rather than what should be on the site because you can have it there. While you can add things for the sake of adding them, it doesn&#8217;t make the site any more effective. In fact it makes it less effective.</p></div>
+<div class="exampleblock">
+<div class="title">Example 2. Functionality Layer Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>Unsuccessful functionality layers are most often caused by:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Unidentified site objectives and user goals
+</p>
+</li>
+<li>
+<p>
+Misidentified objectives and goals
+</p>
+</li>
+<li>
+<p>
+Failure to uncover the full scope of objectives and needs
+</p>
+</li>
+</ul></div>
+</div></div>
+<div class="paragraph"><p>Just because you&#8217;ve discussed the needs of the site doesn&#8217;t mean you now have a successful functionality layer. Every goal established has implications. Not fully realizing the scope of requirements needed can also lead to an underperforming website. Each goal needs to be investigated so you can uncover any underlying implications.</p></div>
+<div class="paragraph"><p>For example, consider you were designing a site for a news publication that generates revenue by selling advertisements. Most advertising is sold based on quantity of page impressions. Revenue is generated (the objective) when users visit the site. The more users visit the site, the more revenue the site generates. Inversely, the site won&#8217;t make any money if users don&#8217;t come.</p></div>
+<div class="paragraph"><p>In this case the users task is to read content that interests them. At a basic level the site needs to provide content of interest to the user. If you stopped thinking about functionality needs here, you miss critical features. If majority of the users preferred to read news via e-mail or RSS they wouldn&#8217;t end up using the site and it would fail.</p></div>
+<div class="paragraph"><p>It&#8217;s easy to overlook important functionality needs. This is why solid process is required to ensure you met all that is required for a site&#8217;s success. Despite the importance, this process is often ignored. Common excuses include unnecessary work or goals that are self evident, but it hurts the client and the designer in the long run. Goals are the best way to reach the strongest design, and the process is easier than it may seem.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_principles_of_design_functionality">Principles of Design Functionality</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Functionality goals are only as effective as they are accurate. Misidentifying user goals can be worse than not identifying them at all. Likewise, unrealistic stakeholder goals are planning for failure. The process of establishing the goals needs to ensure accuracy and detail. As all projects start out of the needs of stakeholders, you will start designing the functionality of the site by identifying their goals.</p></div>
+<div class="sect2">
+<h3 id="_establish_s_m_a_r_t_goals">Establish S.M.A.R.T. Goals</h3>
+<div class="paragraph"><p>Identifying stakeholder goals will almost always be a collaborative process. It is unrealistic to expect that you know more about the stakeholders needs than they do. Likewise the stakeholders don&#8217;t understand design and need your help fleshing them out. Don&#8217;t be surprised if goal discussions stray towards tactic-vision. Most people are trained to think about what they want <strong>on</strong> the site rather than what they want <strong>out</strong> of the site. You will have to guide the goal-setting focus.</p></div>
+<div class="paragraph"><p>There&#8217;s a lot of theory available about how to set effective personal and business goals. The method I have found to be the simplest and most effective is the SMART principle. The smart principle is a series of checks to ensure goals are accurate and usable. Specifically, that goals chosen are <strong>specific</strong>, <strong>measurable</strong>, <strong>attainable</strong>, <strong>relevant</strong>, and <strong>time bound</strong> (hence SMART). Goals need all of those qualities to be usable.</p></div>
+<div class="paragraph"><p>SMART Goal Critera:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Specific
+</p>
+</li>
+<li>
+<p>
+Measurable
+</p>
+</li>
+<li>
+<p>
+Attainable
+</p>
+</li>
+<li>
+<p>
+Relevant
+</p>
+</li>
+<li>
+<p>
+And last but not least, Time Bound
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Let&#8217;s examine each quality in a bit more detail.</p></div>
+<div class="imageblock" id="Figure-3.2" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_3-2.png" alt="figures/figure_3-2.png" width="800" height="600">
+</div>
+<div class="title">Figure 2. A simple goal worksheet can help you figure out the site goals and ensure they meet the SMART goal criteria.</div>
+</div>
+<div class="sect4">
+<h5 id="_specific">Specific</h5>
+<div class="paragraph"><p>Goals must be straightforward and specific. Vague goals are useless; they cannot guide your design decisions. All goals should have a clear what, why, and how. What are you planning on getting out of the site? Why do you want to get that result? And how are you going to go about it?</p></div>
+<div class="paragraph"><p>If you think about our local film festival site, the stakeholders may state the goal as "grow the festival." This is too vague to be effective. Instead the goal should be evolved into "double attendance to the festival", or to "increase revenue and awareness". Now you know to focus on ticket sales rather than alternative needs like online donations.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_measurable">Measurable</h5>
+<div class="paragraph"><p>There is an old saying that states, "You can&#8217;t manage what you don&#8217;t measure." This couldn&#8217;t be more relevant to websites. With the technology available it has never been easier to measure the success of a website. Many of website monitoring tools are available for free, such as Google Analytics. Goals that are not measurable are ineffective and unmanageable.</p></div>
+<div class="exampleblock">
+<div class="title">Example 3. Functionality Layer Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>Measurement is a great tool to avoid tactic-mindset. "Having a press packet" is not measurable, where "Increasing press mentions by 25%" is.</p></div>
+</div></div>
+<div class="paragraph"><p>As we discussed earlier, measurable goals also let you know how effective the design is and how close you are to reaching those goals. You can save time and money on ineffective campaigns and invest more into those that perform.</p></div>
+<div class="paragraph"><p>It&#8217;s important to select goals that can be explicitly measured. For a retail store, an increase in overall store sales is difficult to assess and could lead to inaccurate conclusions. Instead it would be more effective to measure the number of customers that mention the website as a referral.</p></div>
+<div class="paragraph"><p>The adage "half of my advertising budget is wasted, but I&#8217;m not sure which half" no longer applies. You have the tools to know exactly what is working and what isn&#8217;t, provided goals are measurable.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_attainable">Attainable</h5>
+<div class="paragraph"><p>Goals need to be realistic. Why move forward with a plan destined to fail? This doesn&#8217;t mean that goals shouldn&#8217;t be ambitious; but they must be attainable. Establishing a goal of stealing Google&#8217;s market share in the next six months is not likely. Instead, launching a site  and in six months having a loyal user-base of 200 people might be considered ambitious, but it&#8217;s certainly plausible.</p></div>
+<div class="paragraph"><p>In fact, goals should be ambitious; they should push your comfort zone a bit. It&#8217;s better to fall slightly short of stated goals than to set modest ones and have no motivation to push beyond them. The stakeholders will thank you.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_relevant">Relevant</h5>
+<div class="paragraph"><p>Goals should be relevant to the current needs and challenges of the website commissioners. When brainstorming goals you are essentially creating a wish list with the stakeholders. Many people have great imaginations, and can&#8217;t help but think about goals that would be nice but not important. It might be nice to get qualified people contacting you about job opportunities, but if you are not actively hiring it really isn&#8217;t relevant. It also draws focus away from goals that are critical.</p></div>
+<div class="paragraph"><p>One of the best ways to ensure that goals are relevant is to tie them to specific business or organization challenges. If a goal is marketing related, but the owners confess they can&#8217;t handle more business, it isn&#8217;t relevant.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_time_bound">Time Bound</h5>
+<div class="paragraph"><p>A goal with an indefinite timeline will never be accomplished. Including time actualizes the goal. A goal that simply says "increase sales by 50%" doesn&#8217;t feel real; without a date you might as well assume the goal is a lifelong quest. Additionally the difference between "increase sales by 50% in ten years" is drastically different than "in one year". The urgency and work required to achieve the same goal will vary based on timeframe.</p></div>
+<div class="paragraph"><p>Establishing a timeframe allows you to make the proper design recommendations and probably some marketing ones as well. Our goal of "50% increase in sales in one year" will need promotion in addition to a new design.</p></div>
+<div class="paragraph"><p>Once you document a list of goals you now have a clear idea as to what the site commissioners want from the site. The next step is to figure out what the users want.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_identify_task_knowledge_structures">Identify Task Knowledge Structures</h3>
+<div class="paragraph"><p>You can&#8217;t make the users happy if you don&#8217;t know what they want. Once you know what they want you still have to understand why they want it. Understanding users allows you to design a site that attracts people and keeps them coming back.</p></div>
+<div class="paragraph"><p>A user arrives on your site with an outcome they wish to obtain. Reaching that outcome happens when they perform a series of tasks. Understanding the users needs requires you to know what that outcome is and what tasks the user must perform to get it.</p></div>
+<div class="paragraph"><p>Johnson and Johnson developed a design principle that helps understand user goals and related tasks. They called this principle "Task Knowledge Structures". The concept is used to model conceptual, declarative, and procedural knowledge in relation to the goals and actions required to reach them. In non-jargon, they create a clear picture of user tasks and the solutions needed to accommodate them.</p></div>
+<div class="paragraph"><p>There are a variety of different ways to develop a list of key tasks, all with varying degrees of accuracy and success. The more methods you can use the better your list will be, however this is not always practical for all projects.</p></div>
+<div class="paragraph"><p>The first step is to research the target users and find out what they want from the site. Depending on the project your method of research will vary. Consider the following research techniques as a means to learn about user motivations and desires.</p></div>
+<div class="sect4">
+<h5 id="_speculation">Speculation</h5>
+<div class="paragraph"><p>OK, speculation isn&#8217;t a research technique, but it is used to identify goals. Speculation is the most common and the least effective method of understanding the user. Many times you are left at the mercy of the site commissioners and their fragile understanding of the users. Speculation is better than designing blind but it&#8217;s not very accurate. Worse yet is when you have to do some speculation on your own. This is worst way to understand the users but better than ignoring their needs altogether.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_website_statistics">Website Statistics</h5>
+<div class="paragraph"><p>Analyzing the data on how users behave on the site is a low cost research method. This is not always possible; new sites don&#8217;t have data and not all sites have the right monitoring tools.</p></div>
+<div class="paragraph"><p>You want to identify the top entrances, exits, popular pages, and common pathways through the site. With that information you can analyze common behavior patterns and identify important parts of the site. The most popular pages on the site are probably important to the user base. Pages that show a high percentage of users leaving the site may be lacking in important information.</p></div>
+<div class="paragraph"><p>In examining the statistics of my company website I was able to identify that the process page was important to most users. While the homepage and web design page had more page visits, the majority of people were landing on those pages from search engines. Most users clicked on the process page after arriving on the site.</p></div>
+<div class="paragraph"><p>By analyzing website statistics I was able to compare the most popular pages with the most common entrance pages to determine many users sought out information about our process and contact information.</p></div>
+<div class="paragraph"><p>Some services have the capability to capture videos of users browsing through the site. These videos are so detailed that you can see how a user moves their mouse, what they click on, and how they scroll, giving you better context of how users interact with your site.  For example, you can identify when a user clicks a link because they know it is what they are looking for or when they click because they couldn&#8217;t find a better alternative.</p></div>
+<div class="paragraph"><p>Keep in mind that all data collected this way is heavily influenced by the current design of the site. While better than speculation, it is best to use statistics to supplement other research methods.</p></div>
+<div class="paragraph"><p>Interviews, Surveys &amp; Focus Groups
+<span class="monospaced"><span class="monospaced"></span></span><span class="monospaced"><span class="monospaced"></span></span><span class="monospaced">+</span>+&gt;&gt;</p></div>
+<div class="paragraph"><p>One of the best ways to understand user motivations is to ask them. Who would have thought? The quality of information you obtain correlates directly to your questions and the people you ask. It is best to prepare a list of non-leading questions before doing your research. Non-leading questions are open ended and don&#8217;t give the interviewee any hints as to the answer you are hoping to get. It should go without saying that those being interviewed should be of the target audience.</p></div>
+<div class="paragraph"><p>You could ask "Do you visit the site with the intention of purchasing tickets?" but it encourages a "yes" answer even if that wasn&#8217;t the case. Instead asking, "Why did you visit the site? What where you trying to accomplish?" would result in an unbiased answer.</p></div>
+<div class="paragraph"><p>Interviews can be performed in a number of ways, including:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Over the phone
+</p>
+</li>
+<li>
+<p>
+Via e-mail
+</p>
+</li>
+<li>
+<p>
+Via SMS / text messages
+</p>
+</li>
+<li>
+<p>
+Individually, in person
+</p>
+</li>
+<li>
+<p>
+In a group
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>If contacting users directly isn&#8217;t an option, you could use an online survey. Surveys can be sent to an e-mail list or offered to users when they visit the site. The drawback to surveys is that you lose the contextual background of having a real conversation with someone. This often leads to lower quality data. Even still it tends to be more accurate than analytics and speculation.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_behavior_observation">Behavior Observation</h5>
+<div class="paragraph"><p>Observing users in their natural environment is the best way to understand them; it also is the most difficult. Asking users their motivations is effective, but most people don&#8217;t fully understand why they behave the way they do. Even if they do you are relying on memory, which is fallible as well.</p></div>
+<div class="paragraph"><p>Behavior observation is the practice of watching users perform tasks while they narrate their steps. The goal is to understand the users motivations based on their actions in conjunction with what they say.</p></div>
+<div class="paragraph"><p>The process starts by assigning users relevant but open-ended tasks. These tasks should not be performed specifically on your website. You want to observe their motivations on a macro level, not just as they pertain to one specific site. Additionally, it is best to leave out what company you are working with to prevent skewing the results.</p></div>
+<div class="paragraph"><p>If you are designing an archery supply store, you could start by asking the user to purchase a new set of gloves. Typically in e-commerce observations you would provide the user with a budget and actually allow them to buy the item. This ensures an accurate representation of their thought process.</p></div>
+<div class="paragraph"><p>The user then finds a natural starting point, such as a search engine, and goes through the process of making the purchase. Along the way they describe what they are doing and why, which is termed "narrating."</p></div>
+<div class="paragraph"><p>Behavior observation is expensive in both time and cost. It takes time to design the study, find participants, run the study and analyze the results. Many participants want to be compensated for their time and e-commerce projects need purchasing budgets. Despite the increased cost, behavior observation is the best way to understand users.</p></div>
+<div class="paragraph"><p>Any one of these methods can lead to a list of user goals and associated tasks. This is the first step, but to prevent missing any important details you need to expand on what your research has uncovered.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_building_knowledge_task_structures">Building Knowledge Task Structures</h3>
+<div class="paragraph"><p>Every goal and task you identify has design implications. Every goal and task needs supportive elements for users to accomplish them, such as:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Content
+</p>
+</li>
+<li>
+<p>
+Interactivity
+</p>
+</li>
+<li>
+<p>
+Pages
+</p>
+</li>
+<li>
+<p>
+Functionality
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Going back to our film festival example, attending the event is a common user goal. The tasks related to this goal are confirming that the user wants to go and purchasing a ticket. In order to fulfill the first task, the site needs enough supporting information that the user can make a decision. More specifically:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+What films will be playing
+</p>
+</li>
+<li>
+<p>
+Why the films are worth watching
+</p>
+</li>
+<li>
+<p>
+Why the festival will be worth the time and money
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>After the user makes a decision (accomplishing their task) they can move on and purchase a ticket. To purchase a ticket, the site needs the following support:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Content describing the ticketing process
+</p>
+</li>
+<li>
+<p>
+Online ordering
+</p>
+</li>
+<li>
+<p>
+Some form of payment management
+</p>
+</li>
+<li>
+<p>
+Notification and confirmation of sale (for both the film administrators and the user)
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>If you go through this process for every task you are much less likely to miss important details. While this may sound like an unnecessary and daunting task, if you go about it in a structured manor it can be effortless. You can use a spreadsheet as the framework for the documentation. The end result is a clear blueprint as to what pages, content, and programming is needed for the site&#8217;s success.</p></div>
+<div class="paragraph"><p>If you were to do this for the film festival it might look like figure 3-3. I recommend starting by focusing on stakeholder goals then evaluating related tasks, content, pages, and interactions are needed to support them.</p></div>
+<div class="paragraph"><p>Site Goal: Increase Event Attendance
+User Tasks
+Content Required
+Interaction Required
+Find event information and details to make decision on attendance.
+Event descriptions and benefits of attending.
+Event costs
+Location and parking information
+Site navigation
+RSVP after making a decision
+How RSVP works
+Where the will call window is
+RSVP requirements, cancelation fees, etc..
+Payment processing
+Purchase confirmation
+Ticket inventory management</p></div>
+<div class="imageblock" id="Figure-3.3" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_3-3.png" alt="figures/figure_3-3.png" width="800" height="600">
+</div>
+<div class="title">Figure 3. This is an example of how you could flesh out the elements needed to support a site&#8217;s goal. Almost all goals are closely tied to users performing specific tasks.</div>
+</div>
+<div class="paragraph"><p>If you were not convinced that stakeholder goals are dependent on the users, this example spreadsheet should be evidence to the contrary. This is not where the planning stops however. As we established earlier, it&#8217;s also important to consider what the user is trying to accomplish and how to support their needs. You must now document user goals just as you did stakeholder goals.</p></div>
+<div class="paragraph"><p>Because you are dealing with the behavior of people you must also consider motivation and desired actions in addition to what content is required to support the task. Again, break out each user goal and the sub-tasks that will accomplish it.</p></div>
+<div class="paragraph"><p>User Goal: RSVP for Upcoming Event
+Task
+Motivation
+Content
+Action
+Learn more about the film festival
+Decide if it the festival holds the type of events the user wants to see.
+About the Festival
+Find general festival information
+Learn more about specific upcoming event
+Decide if the upcoming event in particular is worth attending based on subject matter and time / date.
+Specific event
+Event subject &amp; background
+Time / date / location
+Find specific event information
+Learn how to attend the event.
+Now planning to attend, figure out how one goes about attending, including how to book a ticket, where it is, how to park, etc…
+Parking &amp; directions
+Booking information and procedure
+Find location and directions
+Find parking information
+Find RSVP information and procedure
+Book a ticket
+Understands how the process works, wants to pay for a ticket.
+Purchase instructions and confirmation.
+Go through the checkout procedure
+Look for confirmation</p></div>
+<div class="imageblock" id="Figure-3.4" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_3-4.png" alt="figures/figure_3-4.png" width="800" height="600">
+</div>
+<div class="title">Figure 4. User tasks can be broken down into subtasks and paired with motivations and actions. These both can be used to extrapolate what pages and information, pages and functionality needs to be on the site.</div>
+</div>
+<div class="paragraph"><p>With your lists complete, you now a document containing both stakeholder and user goals, associated tasks, plus the implications they have on the site. You should now have a clear picture of the site scope in terms of design, functionality, and content. Additionally this list provides you another key piece of information: what <strong>affordances</strong> you need to design into the site.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_give_the_user_affordance">Give the User Affordance</h3>
+<div class="paragraph"><p>In chapter two we defined affordance as using form to allow specific function. For example, a chair affords sitting because it has a flat surface and is structurally stable. The shape of a spoon affords holding liquid because it is concave with an open top.</p></div>
+<div class="paragraph"><p>Many designers feel that affordances are a problem for industrial designers, but they are mistaken. Because the web is not a physical object the standard definition of affordance doesn&#8217;t strictly hold true, but the concept of perceived affordance does. Perceived affordance is described as what a user thinks they can do based on what they see. Does the site look like you can purchase products online? The lists you just created can point out what perceived affordances need to be worked into the design.</p></div>
+<div class="paragraph"><p>A common example of well-executed perceived affordance can be found on e-commerce websites&#8201;&#8212;&#8201;the "My Cart" link communicates online ordering capabilities. The use of conventional wording and placement tells users who observe it that they could place orders through the site. You don&#8217;t have to explicitly state that the site has e-commerce capabilities (as seen in Figure 3.5).</p></div>
+<div class="imageblock" id="Figure-3.5" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_3-5.png" alt="figures/figure_3-5.png" width="800" height="600">
+</div>
+<div class="title">Figure 5. Moosejaw&#8217;s website doesn&#8217;t scream e-commerce, but the placement of shopping cart related navigation in the top right is enough to communicate that you can make purchases online.</div>
+</div>
+<div class="paragraph"><p>At this point affordances don&#8217;t have to be any more complicated than a list. It is not important to find the visual solution that will make possible actions obvious; you will uncover those solutions in the usability and proficiency layers discussed in later chapters. For now you just need to know what affordances the site requires for success.</p></div>
+<div class="paragraph"><p>The development of these lists give you an unrestrained wish list of goals the design should address. Not all of those goals will be of equal importance. Design is fundamentally the process of making compromises in order to focus on the important. Successful designs have goal hierarchies. Once you have identified all the goals, the next step is to prioritize them.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_focus_and_prioritize">Focus and Prioritize</h3>
+<div class="paragraph"><p>Anytime you brainstorm website goals you end up with a list of both critical and trivial goals. One of the greatest tools you have as a designer is the ability to emphasize what is important. Think of site focus as a pie chart. With one goal, the entire site is focused on it. As you add more goals you must divide the focus. Each new goal sacrifices the effectiveness of the rest. While you could try and make the website larger and the pie chart bigger, it would be at the cost of efficiency. Larger websites are more expensive to build and more difficult to use.</p></div>
+<div class="paragraph"><p>Your objective now is to identify which goals are essential for the success of the site. Everything else is a "nice to have". Thus the first step is to remove any unnecessary goals from your list. This can be tricky; everything is there because someone thought it was important. Resist adding goals to keep people happy. Instead, communicate to the stakeholders that the more goals you have the more diluted the website becomes.</p></div>
+<div class="paragraph"><p>One of the most compelling principles for focusing design was actually conceptualized by an Italian economist named Vilfredo Pareto. Vilfredeo noticed most outcomes could be traced to a very narrow range of causes. Vilfredo discovered that 80% of the land in Italy was owned by 20% of the population. He went on to identify that 20% of the pea pods in his garden accounted for 80% of his total peas. This principle is also known as the 80/20 rule and is popular in business methodologies.</p></div>
+<div class="paragraph"><p>For example, a large number of companies note that 20% of clients account for 80% of the total revenue. Other companies achieve 80% of their sales from 20% of their marketing efforts. The principle doesn&#8217;t mean that literally 20% of efforts create 80% of total results. It suggests that there is a large disproportion between the causes and effects.</p></div>
+<div class="paragraph"><p>Use this principle to focus the goals. Find the 20% of causes that will generate 80% of results and prioritize them. This will bring larger results for less time, money, and effort.</p></div>
+<div class="paragraph"><p>After researching an brick and mortar and e-commerce retailer, you may realize that 80% of users make in store purchases rather than online. Instead of focusing on web-based sales, you should prioritize decision influencing content, encouraging users to make a decision rather than purchase. Once the decision is made, online or offline is inconsequential. Focusing on the majority ultimately makes the site more successful.</p></div>
+<div class="paragraph"><p>Not all goals should be removed completely, but they should receive less focus. Focus on the 20% of users, tasks, and goals that account for 80% of the results. While this may result in hiding or obscuring content that some users want, it will make the content that most users want easier to find. Prioritization of goals is the only way to maximize desired outcomes.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary_putting_it_all_together">Summary: Putting it All Together</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>You can only design to your full potential after understanding the needs of the stakeholders and target users. It is your job to not only design what the site should look like, but also what it should accomplish. Your design should be the solution to those needs, not just a pretty interface.</p></div>
+<div class="paragraph"><p>You can address functionality needs through four steps:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Identifying SMART stakeholder goals
+</p>
+</li>
+<li>
+<p>
+Researching users to understand their goals
+</p>
+</li>
+<li>
+<p>
+Using stakeholder and user goals to identify supportive needs
+</p>
+</li>
+<li>
+<p>
+Developing a list of perceived affordances the design must address
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Design must be focused. With every additional goal required of the site you borrow focus from other goals. You also increase project costs and timelines. No goals should be of equal importance so prioritize them. If you attempt to design a site giving goals equal weight, it would sacrifice the success of important goals for unimportant ones; strive to eliminate unnecessary goals and prioritize the ones that remain. The best way to do this is through the 80/20 rule, as a small percentage of users account for majority of the sites conversions.</p></div>
+<div class="paragraph"><p>Functionality Layer Action Items</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+At the start of any design project you should do the following:
+</p>
+</li>
+<li>
+<p>
+Identify steak holder goals using the SMART method
+</p>
+</li>
+<li>
+<p>
+Research the target users to find out their desires, motivations and needs
+</p>
+</li>
+<li>
+<p>
+Create lists of goals, tasks, supportive materials and affordances required
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr></div>
+<div id="footer">
+<div id="footer-text">
+Version 2.5<br>
+Last updated 2011-08-23 15:04:54 MDT
+</div>
+</div>
+</body>
+</html>

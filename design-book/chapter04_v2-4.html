@@ -1,0 +1,899 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.5">
+<title>Designing with Principles</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #777777;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+tt {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+.monospaced {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([2-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName == 'DIV'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName == 'DIV' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Designing with Principles</h1>
+<span id="author">Ross Johnson</span><br>
+<span id="email" class="monospaced">&lt;<a href="mailto:ross.johnson@designlayers.com">ross.johnson@designlayers.com</a>&gt;</span><br>
+<span id="revnumber">version 2.4,</span>
+<span id="revdate">2011-08-23</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_chapter_4_essential_elements_of_reliability">CHAPTER 4: Essential Elements of Reliability</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This chapter covers</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+What is reliable design?
+</p>
+</li>
+<li>
+<p>
+Why is reliable design important
+</p>
+</li>
+<li>
+<p>
+Designing for Reliability
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may question first how reliability has anything to do with design and second why I prioritize it over usability and aesthetics. By the end of this chapter you will understand why websites commonly fail due to reliability issues and what you can do to prevent reliability failures from occurring in the first place.</p></div>
+<div class="paragraph"><p>On a psychological level we crave reliability. Early in our evolution, survival was increased by what was dependable and predictable. Those who gravitated towards situations that were consistently safe, lived longer. It is now instinctual to be bothered by unreliability regardless if the source is a person, car, computer or website.</p></div>
+<div class="paragraph"><p>Design may seem unrelated to this innate nature, but it is not. Your approach as a designer has a profound impact on reliability. Seemly simple design decisions have complex implications. For example listing the latest news on a page may be visually pleasing, but typically requires access to a database. If the site gets a sudden influx of traffic, making those extra calls to the database could be enough to overpower the server hosting the site.</p></div>
+<div class="paragraph"><p>Reliability is not limited to technology-based design. Graphic designers, for example, need to be aware of how reliable their printing methods are. If you&#8217;ve designed a business card with die cuts, you wouldn&#8217;t want the printer to remove so much material the cards would crinkle upon being handled. Likewise the best fashion designers are aware of how many stitches are used, and what colors are most resistant to fade. Even interior designers need to think about reliability. Imagine hiring someone to select a suite of beautiful expensive furniture for you, only to find out six months later the fabric fell apart under normal wear.</p></div>
+<div class="exampleblock">
+<div class="title">Example 1. Reliability Layer Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>Despite sounding like a problem for automakers and computer manufactures, reliability has the potential to frustrate stakeholders, designers, developers, and most importantly, website users.</p></div>
+</div></div>
+<div class="paragraph"><p>On a small scale, website reliability issues are an annoyance that disrupt the users experience. On a large scale, a site can fail due to reliability issues alone. After all, if the site is inaccessible, how can users accomplish their tasks?</p></div>
+<div class="paragraph"><p>The problem can have bigger implications than the website itself. A broken website reflects the organization behind it; if your site is seen as unreliable, users may assume that your company is as well.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_reliable_design">What is Reliable Design?</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>At the time of this writing, I could only find a handful of articles online that even mentioned reliable design. On the other hand, articles on usability number in the tens of thousands. This strikes me as odd considering a site that is unreliable is inherently unusable.</p></div>
+<div class="paragraph"><p>Designers may, on reflection, ignore this aspect of design on the assumption the basic backbone of the web is fairly reliable. Even when there are technical failures to network systems, service providers and web hosts are quick to resolve them and most large companies have backups and redundancies in place. A stable infrastructure is no excuse for ignoring reliability; good designers all strive to create the most reliable website possible.</p></div>
+<div class="paragraph"><p>So what is this mysterious layer of design? Part of the answer can be understood through the definition of "reliable."</p></div>
+<div class="paragraph"><p>Reliable is defined as <strong>Giving the same result on successive trials</strong> (Webster&#8217;s Dictionary).</p></div>
+<div class="paragraph"><p>Not the most exciting definition, but it does communicate an important concept: <strong>consistency</strong>. Consistency is the lost secret of reliable design. You need to be aware of not only how the site will perform, but also how it will perform every time. It isn&#8217;t enough to produce a nice result once, the site must do it every time a user visits.</p></div>
+<div class="paragraph"><p>If you have an interactive poll feature that dynamically places a vote without taking a user from the page they&#8217;re on, it needs to function every time they use it. You can&#8217;t hope that you impress some users with instant feedback and others won&#8217;t notice when it fails. It just makes your site look frail.</p></div>
+<div class="paragraph"><p>Reliability as applied to the web can be segmented into four areas of focus: <strong>functionality</strong>, <strong>technology</strong>, <strong>devices</strong>, and <strong>visuals</strong>. Each area has unique requirements you need to address to ensure the site performs as intended, every time. There is no universal priority to the four areas; the context of the project will dictate which area is most important (and to what extent.) Let&#8217;s dive into these different areas of reliable focus.</p></div>
+<div class="sect2">
+<h3 id="_reliable_function">Reliable Function</h3>
+<div class="paragraph"><p>On a high level, reliable functionality means the user can consistently perform the goals and tasks you defined in the functionality layer. Often, but not always, reliable functionality is most critical of the four topic areas. As we previously established, a site cannot be successful if users are unable to perform desired actions. Furthermore, a site that performs its purpose part of the time is only slightly better than a site that doesn&#8217;t serve its purpose at all.</p></div>
+<div class="paragraph"><p>For example, the use of dynamically submitted contact forms have become common on many websites. They&#8217;re popular because they make form submission a bit easier and look "fancy". What many overlook is the associated reliability issues. If a user doesn&#8217;t have JavaScript enabled or a library doesn&#8217;t load properly, the form doesn&#8217;t work. Now the user can&#8217;t contact you. On a lead generation site this would be devastating.</p></div>
+<div class="paragraph"><p>This is true of user tasks as well. Providing a service that doesn&#8217;t perform its function is a good way to ensure users will leave, never to return. Would you use an email service that had a broken login half the time? Or lost e-mails on a random basis?</p></div>
+<div class="paragraph"><p>In fact, having buggy features is often worse than not having them at all. We will go into this more later. For now, let&#8217;s look at the common cause for reliability failures&#8201;&#8212;&#8201;technology.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_technological_reliability">Technological Reliability</h3>
+<div class="paragraph"><p>Technology is the most notorious of reliability factors; servers crash, hardware fails, networks become clogged, and sites are hacked. Don&#8217;t be fooled into thinking technological reliability is the developer or IT manager&#8217;s job. While both professions will play an integral role, the responsibility is just as much yours as it is theirs. Design choices affect reliability regardless if you develop the site or not.</p></div>
+<div class="paragraph"><p>Non-standard technological requirements like JavaScript, Flash, or Silverlight could be fault points. Even though 95% of users surf with JavaScript enabled, 5% don&#8217;t (according to w3schools.com browser statistics). In some business environments, JavaScript is disabled on all computers for security reasons.</p></div>
+<div class="imageblock" id="Figure-4.1" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_4-1.png" alt="figures/figure_4-1.png" width="800" height="600">
+</div>
+<div class="title">Figure 1. A site that requires non-standard technology has inherent reliability issues, as some users can&#8217;t even access the site to achieve their tasks.</div>
+</div>
+<div class="paragraph"><p>Every decision you make should be done with consideration for reliability. For example, using modal windows or video players can improve the experience of the site but they do so at the expense of reliability. This doesn&#8217;t mean you should avoid rich media; rather, decisions of this nature should be made with reliability implications in mind. You may discover that the JavaScript Lightbox isn&#8217;t necessary or worth the reliability trade off.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_device_reliability">Device Reliability</h3>
+<div class="paragraph"><p>The utility of the web continues to grow as we find new ways to access it. Years ago, you could only access the web from a desktop computer, over a phone line, and using a text-based browser. Now we have a multitude of high quality web browsers, laptops, netbooks, high-speed wireless connections, and countless handheld devices of all shape and size. Users also visit websites on tablets, gaming consoles, ebook readers, televisions, and kiosks.</p></div>
+<div class="paragraph"><p>A greater breadth of accessibility is not without its downfalls. You are now faced with users trying to access the same website with very different devices and and under a wide variety of circumstances. Not only do screen sizes, resolutions, and browsers vary, but also the intent in which someone accesses the site. Personal computer-based browsers continue to improve at an alarming rate, but not all devices follow pace. Browser capabilities will never be a level playing field; some devices, by their very design nature, are more or less capable than others.</p></div>
+<div class="paragraph"><p>How necessary it is to support alternative devices will depend on the situation. For example, if 80% of your target audience want to book a restaurant reservation from their mobile phone, your site cannot perform its function if it isn&#8217;t mobile friendly.</p></div>
+<div class="paragraph"><p>If alternative devices are important, be aware of the constraints that come with them. A site that needs to be mobile friendly (but not a mobile specific site) means a more flexible layout along with smaller and fewer images (as you can&#8217;t be sure the user will be able to see them.)</p></div>
+<div class="paragraph"><p>Not all reliability issues are directly related to technology. Even the pixels you design with can be unreliable, and not in a "going to crash Photoshop" sort of way. I call this aspect of design "visual reliability."</p></div>
+</div>
+<div class="sect2">
+<h3 id="_visual_reliability">Visual Reliability</h3>
+<div class="paragraph"><p>If I had a client ask me to design a site that was "visually reliable" two years ago I would have scoffed and labeled them crazy. How do you make colors, layout, and pixels reliable? They&#8217;re not going anywhere! Today I&#8217;m a little wiser, more seasoned, and consider such a request wise and strategic.</p></div>
+<div class="paragraph"><p>The flexibility of the web requires visuals are also flexible. Print designers have the advantage of knowing exactly what content will be on the piece when it leaves their hands and goes to the printers. On the web we rarely ever know exactly what content will be on the site once we are done working on it. Even if we have the exact content for launch, websites are supposed to change over time.</p></div>
+<div class="paragraph"><p>It is unrealistic to expect a designer to be able to predict the future and know exactly how a website might evolve over time. On the other hand, change of some form is inevitable, and failure to think in these terms is a design failure. Always approach design with the assumption a website will change and craft the visuals reliably to expand and contract around it.</p></div>
+<div class="paragraph"><p>For example, you could design a site to have a fixed height so users don&#8217;t have to scroll. Provided the current content fits within that framework it doesn&#8217;t seem like a bad idea. Not only is this approach easier to use but its visually interesting, right? The issue here is that you are limiting how much the site can expand. New content may not fit within the framework and at some point you may run out of space to add new elements.</p></div>
+<div class="imageblock" id="Figure-4.2" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_4-2.png" alt="figures/figure_4-2.png" width="600" height="600">
+</div>
+<div class="title">Figure 2. In this ad design I did, my first pass ended up with a concept that limited the price to a maximum of four digits. It turns out some items required more digits than anticipated; the second concept proved to be more reliable.</div>
+</div>
+<div class="paragraph"><p>This is true on a micro level as well. Ever come across a site where they never expected a headline to be long, and the site is broken because a long headline is exactly what was used? I certainly have made that mistake. Figure 4.2 is an example of a time when I did not think about visual reliability. I was tasked with designing an advertisement that would be used for all advertisers on a web-based publication. I failed to consider that the price of items might require more than four digits and mistakenly put the item&#8217;s subtitle next to the price (limiting the available space.) Turns out many items did require five or more digits. I ended up redesigning the ad, shown in the more reliable second version.</p></div>
+<div class="paragraph"><p>Never forget that the most predictable thing about websites is their unpredictability. Design should be flexible and reliable enough to accommodate the evolution of the website.</p></div>
+<div class="sect4">
+<h5 id="_responsive_web_design">Responsive Web Design</h5>
+<div class="paragraph"><p>The explosion of different browsing devices has lead to a new design practice known as "responsive" web design. With responsive design, a single website is designed to "respond" to different screen sizes and resolutions. The design literally adapts to the screen the user browses with.</p></div>
+<div class="paragraph"><p>It used to be that you would design for the highest resolution that targeted the greatest amount of users. So if a significant amount of your users still browsed at a resolution of 800 x 600, you would create a single design that fit within that resolution. Users with higher resolutions could still use the site; it just wouldn&#8217;t look as nice.</p></div>
+<div class="paragraph"><p>Through the evolution of JavaScript and CSS you now have the ability to create "flexible designs". With response design specifically, the visuals literally respond to the current browser dimensions. So as the browser grows the design becomes wider, the layout adapting to accommodate the increased space. For example, an additional column may be added, margins widened, and photos enlarged. As the browser shrinks, columns combine, stacking underneath each other. At the smallest level, everything combines into a single column, almost perfect for mobile browsing.</p></div>
+<div class="paragraph"><p>Responsive design is a perfect example of visual reliability. The experience of viewing the website is maintained regardless of device or resolution. Note, however, there is some debate about a single design being used for all contexts. A user&#8217;s intention may be different if they are using a mobile device versus a desktop computer. For example, if you are accessing a restaurant website on your mobile phone it is probably because you are looking up the address or phone number, in which case you don&#8217;t need to be bothered with large graphics and "about us" copy. Instead, a simplified site design with different content (rather than a smaller version of the normal site) might be a better approach.</p></div>
+<div class="imageblock" id="Figure-4.3" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_4-3.png" alt="figures/figure_4-3.png" width="800" height="600">
+</div>
+<div class="title">Figure 3. Web Designer Wall, a website that covers web design ideas, trends, and tutorials is designed to be responsive. As the browser window shrinks the site is rearranged to maintain the best presentation across all devices and screen resolutions.</div>
+</div>
+<div class="paragraph"><p>To design responsively it&#8217;s important consider what elements will change and in what manor. What areas should expand, contract, combine, or stack? What areas can be removed completely?</p></div>
+<div class="paragraph"><p>The takeaway here is that content, users, device, browser, and context are all constantly in flux. Ensure you are not unnecessarily creating points of failure through functionality, technology, devices or visuals. Up to this point, we have looked at reliability from a "goal" driven perspective, which is not the whole story. Reliability plays a significant factor in user sentiment and experience as well.</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reliable_design_and_the_user">Reliable Design and the User</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Despite the common misconception that everyone is different and has completely unique thought processes, there is consistency in human behavior. Our brains are all wired in very similar ways. As humans evolved, subconscious behavior that improved survival was passed on at higher rate. There are psychological "fundamentals" that are prevalent in most people, regardless of genetics and life experiences (which do play a factor). These fundamentals affect our perception of the world, shaping decisions and altering behavior.</p></div>
+<div class="paragraph"><p>The most important fundamental, is the desire for consistency. Consistency makes us feel safe, which is a basic human need. This perception of safety occurs when you can accurately predict the outcome of an experience. Accurate predictions are formed through consistent prior experiences. If every time you sought shelter you avoided potential threats, you can predict the same will happen in the future. If seeking shelter avoided threats only part of the time, you would not see shelter as a safe environment. It may seem far removed from the web, but people assess websites in the same manor.</p></div>
+<div class="exampleblock">
+<div class="title">Example 2. Reliability Layer Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>We have a natural fear of the unknown. This fear protected us when we had to run from large animals that wanted to eat us for dinner. Today it means we are less likely to trust a company or website that is inconsistent in behavior and performance.</p></div>
+</div></div>
+<div class="paragraph"><p>Consistency is so important to us that we base a lot of decisions on how consistent something feels. When questioned, many people state they want  new and exciting, but behaviorally they frequently choose familiar.</p></div>
+<div class="paragraph"><p>To illustrate this point, many business leaders argue that consistently average customer service retains customers longer than great customer service that&#8217;s spotty or inconsistent. It seems that we care more about knowing what to expect rather than the quality of service we get.</p></div>
+<div class="paragraph"><p>If the local coffee shop had generally courteous staff, but on occasion, an extremely rude barista, you would cringe at the possibility of running into the evil coffee slinger. Compare this to a competing shop that had staff that were not particularly warm, but were always civil. Chances are you would prefer the consistently average shop to the sometimes-frightening one.</p></div>
+<div class="paragraph"><p>Consistency has been attributed to the success of many companies and politicians. There is an age-old branding secret that says the more often someone sees your company and message the more they recognize you. A company that has frequent ads, e-mails, or press mentions becomes a company that you know quickly. If that company also has consistent messaging regarding their benefits, you start to associate the company with those benefits even if they have never proven them to you. The more consistent the messaging used, the more effective it is in storing itself into your memory.</p></div>
+<div class="paragraph"><p>Where consistency makes us feel comfortable, safe, and secure, inconsistency does the polar opposite. Inconsistent experiences make us feel uncomfortable, worried, and frightened. Even if a company is great most of the time, distrust forms if our interactions with them are inconsistent (even if sparingly). This applies directly to websites. If a user visits a site and the pages or performance isn&#8217;t consistent, it breeds a feeling of distrust.</p></div>
+<div class="paragraph"><p>We crave consistency both in life and from the websites we visit. A website that isn&#8217;t reliable is not consistent. If a site is not online consistently, if their pages are sometimes slow to load, or if the design is disruptive from page to page, your desire to frequent is dramatically diminished. If you do stick around for any length of time, you probably do so with hesitation.</p></div>
+<div class="paragraph"><p>So if consistency is important, what are the most important areas we can address to ensure it&#8217;s present?</p></div>
+<div class="sect4">
+<h5 id="_uptime">Uptime</h5>
+<div class="paragraph"><p>Many users feel that a site should be online at all times and failure to do so is a reflection on the company or organization. Realistically, 100% uptime is not attainable. Even 99.9% uptime requires expensive hardware (multi-layered fallback servers), redundant DNS servers, top-tier network access, and scores of 24/7 technicians to sprint into action at the first sign of trouble. Each layer of redundancy adds to the cost, which in turn gets passed on the the purchaser. Most small businesses either do not see a need for, or chose not to invest in, such solutions.</p></div>
+<div class="paragraph"><p>That being said all effort should be made to ensure that users are not frequently confronted with a site that doesn&#8217;t load.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_performance">Performance</h5>
+<div class="paragraph"><p>Users expect at least some level of performance from a website. At the most basic level this means the site should load quickly and without error regardless of what page you are on. It isn&#8217;t enough to have a homepage that loads quickly and ignore the rest of the site. If it takes one second to load the first page but six to load the following ones, the user will probably find this more frustrating that a site that takes 3 seconds to load every page. So once again, the underlying key to performance is <strong>consistent</strong> performance.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_visuals">Visuals</h5>
+<div class="paragraph"><p>Consistent visuals comfort the user as well. You could push the boundaries of your creativity by having a website look different from page to page. You might enjoy the flexing of your graphic skills, but it would just confuse the users. Each new look would cause the user to internal confirmation they are on the same website.</p></div>
+<div class="paragraph"><p>Users want to be comforted by similarities in both look and feel across a website. These similarities are established during initial impressions (typically via the home page), and should be relatively consistent from page to page.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Reliable design is important for both users and stakeholders. Reliability issues prevent a site from reaching its full effectiveness. A site plagued with mistakes, bugs, and server downtime discourage users from exploring further or returning. With every user that leaves, an opportunity is missed.</p></div>
+<div class="paragraph"><p>Reliability is obtained by keeping the design as technologically simple as possible. This way, users can&#8201;&#8212;&#8201;at a minimum&#8201;&#8212;&#8201;fully browse the site. Taking reliability a step further means using responsive visuals that adapt to different devices, screen resolutions, and browsers. Users not only expect reliability, they crave it. Remember, humans have deep innate need for consistency and will gravitate toward it when present.</p></div>
+<div class="paragraph"><p>Perhaps most important, consistency allows users to set expectations; expectations that are ultimately part of the designer&#8217;s responsibility to meet. When this process succeeds, it builds a sense of trust and goodwill. Unmet expectations result in opposing sentiments.</p></div>
+<div class="paragraph"><p>This chapter answered the question of why a site needs to be reliable, and the looked at common areas reliability issues originate from. You do not know, at this point, how to go about fixing these concerns. There are several core approaches to address common website failure points. In the next chapter you learn what those approaches are and how to use them in your daily work.</p></div>
+<div class="paragraph"><p>Reliability Layer Action Steps</p></div>
+<div class="paragraph"><p>You can start planning for reliable design right away by doing the following:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Identify what devices users might use to visit your site
+</p>
+</li>
+<li>
+<p>
+Use a reliable website hosting partner (see my recommendations at <a href="http://thedesignlayers.com/hosting">http://thedesignlayers.com/hosting</a>)
+</p>
+</li>
+<li>
+<p>
+Identify areas of the site that could have changing or unpredictable content
+</p>
+</li>
+<li>
+<p>
+Allocate time to develop a plan for redundancy (more on this later)
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr></div>
+<div id="footer">
+<div id="footer-text">
+Version 2.4<br>
+Last updated 2011-08-23 14:27:23 MDT
+</div>
+</div>
+</body>
+</html>

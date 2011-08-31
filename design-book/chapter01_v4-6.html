@@ -1,0 +1,1005 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.5">
+<title>Designing with Principles</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #777777;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+tt {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+.monospaced {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([2-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName == 'DIV'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName == 'DIV' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Designing with Principles</h1>
+<span id="author">Ross Johnson</span><br>
+<span id="email" class="monospaced">&lt;<a href="mailto:ross.johnson@designlayers.com">ross.johnson@designlayers.com</a>&gt;</span><br>
+<span id="revnumber">version 4.6,</span>
+<span id="revdate">2011-08-23</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_chapter_1_don_8217_t_settle_for_good_design">CHAPTER 1: Don&#8217;t Settle for "Good” Design</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>What this chapter covers:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+What are the layers of design?
+</p>
+</li>
+<li>
+<p>
+Why you should design with principles
+</p>
+</li>
+<li>
+<p>
+Why you should design with intention
+</p>
+</li>
+<li>
+<p>
+How to use this book
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>I was a web designer for over ten years before I understood that some of the best designs were so well executed, they didn’t feel like designs at all. Instead, every aspect of the creation worked so well it seemed obvious why the author had chosen the path they did.</p></div>
+<div class="paragraph"><p>To my amusement, it became clear that some of the best designs were so well executed they didn&#8217;t feel designed at all. Instead, every aspect of the creation worked so well it seemed obvious why the author had chosen the path they did.</p></div>
+<div class="paragraph"><p>The problem I still faced was I could identify great design but I couldn&#8217;t explain why it was so. Without knowing why, my "great" designs were a matter of luck. Occasionally I happened to stumble on a winning combination of elements through sheer determination and trial and error. I figured there had to be something my design idols knew that I didn&#8217;t.</p></div>
+<div class="paragraph"><p>In my hunt for insight, I found most graphic and web design content was interesting but didn&#8217;t answer my questions. I learned a lot of "what" to do and very little "why". It wasn&#8217;t until I looked for insight from different design disciplines that it all began to make sense. Studying other forms of design ultimately led to my discovery of the six layers of design needs, outlined in detail later in this chapter.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_who_this_book_is_for">Who This Book is For</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This book is intended for anyone who wants to create better designs for the web. As I have discovered, great design is a product of knowing both theory and practice. For this reason all concepts discussed in this book are viewed from both sides. If you&#8217;re still young in the ways of web design, many of the concepts and methodologies discussed here will be new for you. If you find the information presented overwhelming, try simply focusing on the design mindset alone, and how a deeper understanding of the underlying process can lead to better design decisions. If you are a seasoned web designer, some of the concepts (especially in the early chapters) will be review. Regardless, I encourage you to think about your design process and design mindset. Be honest when evaluating your design process, specifically when it comes to how your intent affects the end product.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_design_ends_up_average">Why Design Ends Up "Average”</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>In researching the underlying premises presented in this book I took the opportunity to talk with many of my peers with respect to their thoughts and perceptions of design. When asked what separated average designers from great designers, the most common response pointed to a poor understanding of basic aesthetic concepts like color, contrast, and balance. In other cases, the differences were verbalized as being the result of an "untrained design eye”.</p></div>
+<div class="paragraph"><p>There is probably some truth to this, although it is far from the primary differentiator between average and great design. You could argue that there is an element of art to graphic design principles. Like other forms of art, talent and experience play a large role in how well you have mastered them. The problem with this thinking is that design is not art; design is science.</p></div>
+<div class="exampleblock">
+<div class="title">Example 1. Key Takeaway</div>
+<div class="content">
+<div class="paragraph"><p>Many designers start new projects by focusing on the visual properties of design like color, contrast and layout. This is a top down approach, when really they should be taking a bottom up approach by focusing on process, intent, and psychology.</p></div>
+</div></div>
+<div class="paragraph"><p>In my research I came across six categories of needs that a design must address to be successful. To my surprise, I routinely addressed very few of them. In fact I noticed a pattern evolve: novice designers typically addressed one category of needs, intermediate designers would address two or three, and great designers addressed them all (with a few notable exceptions).</p></div>
+<div class="paragraph"><p>A misunderstanding of design is what causes it to be average. Typically it also results in an artistic rather than a psychological approach. If you are going into design projects thinking about color, contrast, layout, and balance rather than process, intention, ideation, and psychology you are designing top down when you should be designing bottom up.</p></div>
+<div class="paragraph"><p>It seems so obvious in retrospect, but if you are designing a website used by people, you have to do so knowing how they think. Psychology affects every aspect of design, aesthetics included. I am not just referring to usability either. The real, potentially world-changing value in design is not the ability to make something easy and beautiful. Design has so much more potential.</p></div>
+<div class="paragraph"><p>Over time I began thinking about design needs as a framework. I call this framework "The six layers of design". It is a hierarchy to guide your design decisions based on fundamental website success criterion.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_secret_of_layered_design_approach">The Secret of Layered Design Approach</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>As a hierarchy, the layers are ranked via their importance. Some of the layers are required for a design to be successful, where other layers improve on the success of the design. Each of the layers has actionable principles that can be used to address the layer&#8217;s needs. Shaped from psychology and thousands of years of natural human biases, they are the most reliable way to predict how users interpret your work.</p></div>
+<div class="paragraph"><p>Throughout this book I will be describing the importance of using these layers and principles <strong>intentionally</strong>. As you read you might find yourself thinking, "Oh I do that intuitively". Or, "I always have usability and reliability in the back of my mind". You probably do. As we grow and learn as designers we tend to incorporate these concepts into our work on a semiconscious level. This does lead to improved design, but it&#8217;s a slow and inconsistent path to improvement. I would further argue that there is a ceiling to how much you can improve by experience alone.</p></div>
+<div class="paragraph"><p>As you read this book I encourage you to keep an open mind about what&#8217;s presented. Some topics may be out of your comfort zone. And almost everything about the idea of using a layered approach to design sounds like more work. It is&#8201;&#8212;&#8201;sometimes a lot more work. But the payoff is becoming a better designer.</p></div>
+<div class="paragraph"><p>The six-layered model is actually based on a set of psychological principles discovered by Abraham Maslow in 1943. Maslow was a psychologist driven by his curiosity of human behavior. In particular he was interested in what forces motivated us to act and think in specific ways. His research lead to the publication of a paper called &gt;&gt;&gt; CIT: The Theory of Human Motivation &lt;&lt;&lt; and a book called &gt;&gt;&gt; CIT: Motivation and Personality &lt;&lt;&lt;, both of which discussed what is now called "Maslow&#8217;s Hierarchy of Needs.”</p></div>
+<div class="sect2">
+<h3 id="_maslow_8217_s_hierarchy_of_needs">Maslow&#8217;s Hierarchy of Needs</h3>
+<div class="paragraph"><p>In his search to understand why some individuals excelled in life and others settled into "average", Maslow set out to study what he called "exemplary people". From the field of "historic successes", Maslow included people such a Albert Einstein, Jane Addams, and Eleanor Roosevelt. On a more generic level, Maslow studied a group of college students who all fell within the top one percent of scholastic rankings at the time. He also interviewed fighter pilots, successful business tycoons, and political figures. Maslow&#8217;s overarching goal throughout all the studies he conducted was to understand the motivation that drives what he considered were "healthy and mentally sound individuals".</p></div>
+<div class="imageblock" id="Figure-1.1" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_1-1.png" alt="figures/figure_1-1.png" width="800" height="600">
+</div>
+<div class="title">Figure 1. Abraham Maslow&#8217;s "Hierarchy of Needs".</div>
+</div>
+<div class="paragraph"><p>As a result of the above research, Maslow came up with what he termed "a hierarchy of needs" (<a href="#Figure-1.1">[Figure-1.1]</a>), organized by level of importance (hence the hierarchy). The hierarchy contains five layers in total. The first four are considered basic needs, which Maslow labeled "deficiency needs.” Above basic needs Maslow added another layer which he termed "being needs". Maslow argued that successful people typically go beyond the scope of basic needs and strive for constant improvement. He called this mindset "Metamotivation.” To understand how this relates to design it is important to understand the scope of each layer.</p></div>
+<div class="sect4">
+<h5 id="_physiological_needs">Physiological Needs</h5>
+<div class="paragraph"><p>Physiological needs are the most obvious requirements for human survival. This layer includes the human need for air, food, and water in order to survive. Obvious, yes, but it&#8217;s sometimes easy to overlook basics simply because we deem them too obvious to pay attention to. This concept will resurface later in the book.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_safety_needs">Safety Needs</h5>
+<div class="paragraph"><p>Safety needs are a broader layer than you may think. While they do literally include physical safety, they are better described as consistency. In the modern day this could be translated as personal and financial security, health, and general well-being.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_love_and_belonging">Love and Belonging</h5>
+<div class="paragraph"><p>Basic psychology states that humans are social beings and have a desire to be loved. Being part of a social group is a powerful motivator for human action. In fact, marketing and advertising have used this concept consistently over time to sell more products and influence more people. The reason they use it is because it works. Love and belonging is not just about finding a mate. It includes the need for having friendships, intimate relationships, and a sense of family. People who are not able to fulfill this need often feel lonely, are socially anxious, and can even suffer from clinical depression.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_esteem">Esteem</h5>
+<div class="paragraph"><p>Closely related to love and belonging is a person&#8217;s sense of esteem. Esteem is the desire to feel valued and respected. Esteem is a two-part layer that includes self-validation and external validation. In most cases one must be have self-esteem and self-respect before they can accept the appreciation and respect of others. Esteem is what motivates people for status, prestige, recognition, and achievement. Esteem tends to be a strong motivator in business and is often a better form of motivation than monetary compensation.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_self_actualization">Self-actualization</h5>
+<div class="paragraph"><p>Self-actualization is the layer Maslow added on top of the above described "basic needs". The concept of self-actualization is grounded in the idea a person has the potential be more than a collection of basic needs. Once basic needs are satisfied, individuals naturally gravitate toward creativity, self-less giving, abstract thinking, and other behaviors we typically attach to "greatness". For example, if an individual had the inherent motivation to improve their life, and no deficiency needs distracting them from this goal, then their success increased proportionate to the degree of motivation.</p></div>
+<div class="paragraph"><p>Maslow&#8217;s theory hinges on the premise that the lowest layer of needs must to be met before an individual can advance to the next higher level. So a person would have to fulfill their physiological needs before they could begin focusing on safety, and safety before love and belonging. Only after working through the first four sets of needs can one focus on the "being level" need, or self-actualization.</p></div>
+<div class="paragraph"><p>Like any breakthrough theory, Maslow&#8217;s work was met with both fanfare and criticism. However even psychologists who disputed elements of Maslow&#8217;s theories saw the validity in his conclusions based on a hierarchy of basic human needs, and the implications it contained. After all, how can you be worried about whether you have a sense of belonging if you can&#8217;t find food or water?</p></div>
+<div class="paragraph"><p>Now take a moment and consider Maslow&#8217;s hierarchy of needs in the context of web design. Design at its core is about understanding people, and through that understanding, creating an environment the user enjoys being a part of. This doesn&#8217;t happen by luck; it happens by understanding human behavior and motivation.</p></div>
+<div class="paragraph"><p>Psychology, anthropology, and sociology may seem like boring college subjects but they actually contain a wealth of great design theory. One of the best ways to branch out and become a better designer is to gain a greater understanding of people&#8201;&#8212;&#8201;and not just in relation to computer interaction. Knowing how people behave outside of technology gives you better insights into how they really think.</p></div>
+<div class="paragraph"><p>There clearly is an overlap in human needs, motivations, desire, and design. Maslow&#8217;s theory provides an excellent framework for thinking of needs in terms of priority. This has allowed designers to reuse this basic framework of needs and adapt it to the application of design. The adaptation is called "The Design Hierarchy of Needs".</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_design_hierarchy_of_needs">The Design Hierarchy of Needs</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The design hierarchy of needs <a href="#Figure-1.2">[Figure-1.2]</a> is a way for designers to prioritize and understand the fundamental needs a design must address. The most important needs are at the bottom and like Maslow&#8217;s model are deficiency needs. A design that fails to meet these needs is unlikely to succeed as it&#8217;s missing fundamental components required for successful design. As you address the lower design needs, you are then free to focus on the higher level needs of proficiency, communication, and emotion.</p></div>
+<div class="imageblock" id="Figure-1.2" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_1-2.png" alt="figures/figure_1-2.png" width="800" height="600">
+</div>
+<div class="title">Figure 2. The lowest layers in the design are the most important for a successful design. As you address the needs in each layer, you can focus on the next higher needs.</div>
+</div>
+<div class="paragraph"><p>One of the major criticisms of Maslow&#8217;s model is that lower needs don&#8217;t always <strong>need</strong> to be addressed before the higher ones. Does one really need to feel loved before they can acquire self esteem? Does one really need safety before they can feel loved?</p></div>
+<div class="imageblock" id="Figure-1.3" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_1-3.png" alt="figures/figure_1-3.png" width="800" height="600">
+</div>
+<div class="title">Figure 3. The design layers like Maslow&#8217;s model include deficiency needs and self-actualization needs. In order for a design to be successful the deficiency needs must be addressed, but the most successful designs also meet the self-actualization needs.</div>
+</div>
+<div class="paragraph"><p>The design layers could be subject to the same criticism. There are plenty of websites that communicate the right message but are horribly unusable. For that reason I concede that as designers we are not strictly required to meet a lower level design need in order to apply higher ones. On the other hand, keep in mind the best designs can be achieved by meeting the requirements of every level.</p></div>
+<div class="paragraph"><p>In practice, you won&#8217;t design using the layers by starting with the most important one and working your way up&#8201;&#8212;&#8201;you address the design as a whole, concurrently. Every design choice will have implications on all other layers, and it&#8217;s important to assess each choice in the context of the overall design. The classic definition of design needs has five total needs much like Maslow&#8217;s, however I modified the needs to better describe the current state of the web and how people feel and interact with websites. This new design hierarchy of needs has six layers. The following sections define these layers.</p></div>
+<div class="sect2">
+<h3 id="_functionality">Functionality</h3>
+<div class="paragraph"><p>At the bottom of the hierarchy&#8201;&#8212;&#8201;the most important layer&#8201;&#8212;&#8201;is the intended purpose of the website. I would argue that any website that is online has some intended purpose or objective. Even personal blogs are created with the intention that someone will read them and be interested in what the author writes about.</p></div>
+<div class="paragraph"><p>The functionality layer has many names including site objectives, business objectives, or site goals. This layer states that the site has the capability to actually fulfill the sites reason for existing. A personal blog that can&#8217;t be updated fails it&#8217;s function to keep people up to date with the author&#8217;s life. A company sales website that has no contact information fails it&#8217;s function is to generate leads. While this may seem basic it is often overlooked and under emphasized.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_reliability">Reliability</h3>
+<div class="paragraph"><p>If the site can perform the function it was deigned for, can it do so reliability? This isn&#8217;t limited to technology and the IT department. The reliability layer addresses a wide range of design questions that are often skimmed over and ignored, such as:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+If the function is lead generation, can users reliably find the information they are looking for that would lead them to filling out a contact form?
+</p>
+</li>
+<li>
+<p>
+Does the design function across different devices and technologies?
+</p>
+</li>
+<li>
+<p>
+Does the design provide the best experience across different devices and technologies?
+</p>
+</li>
+<li>
+<p>
+Can the design expand and contract to fit changing content that flows through it?
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_usability">Usability</h3>
+<div class="paragraph"><p>The practice of usability is well known to most web designers and for good reason. Usability plays a critical role in the design of a successful website. Usability is the study and practice of designing websites to be intuitive and easy to use. I challenge you to find anyone who hasn&#8217;t been frustrated with a website before. With todays fast paced, low tolerant user behavior, usability is the cause for countless lost sales and opportunities.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_proficiency">Proficiency</h3>
+<div class="paragraph"><p>A designs greatest potential lies in its capability to affect people&#8217;s lives. Great design doesn&#8217;t just sell a product, or promote a brand; it provides something unique and useful. Design can make people more productive, offer them new abilities, and even inspire on a personal level.</p></div>
+<div class="paragraph"><p>Many websites and products have found their competitive advantage through proficiency. Kayak.com made shopping for the best plane ticket easier than any other site. As a result they took over a large share of the online ticket market.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_communication">Communication</h3>
+<div class="paragraph"><p>The communication layer is where we start to look at using visuals for meaning rather than operation. Previous layers dealt with how people use and interact with the site. Can they perform the actions that they wish? Is it easy? Does it improve the way they perform those tasks? These are all operational challenges that we can address through visual design.</p></div>
+<div class="paragraph"><p>Once we start looking past the use of visuals for operational concerns we can start to address how users feel when they see what we have created. When a user comes to the site what do the visuals tell them? How do they relate to them?</p></div>
+<div class="paragraph"><p>A website with a textured background can "tell" a user very different things based on the texture used. A wooden texture often will be interpreted as rustic, warm, natural, and personal. Conversely, a metal texture "feels" modern, high-tech, cold, and sterile.</p></div>
+<div class="paragraph"><p>Depending on what you want people to know about the website you can use different visuals to communicate different ideas.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_emotion">Emotion</h3>
+<div class="paragraph"><p>Visual design can go deeper than just communicating characteristics and traits. Using a textured background could simply inform a user about the website they are visiting, or it could trigger emotional connections creating a deeper level of engagement with the site. More compelling is the fact that all of our behavior is affected by emotion. Every decision you make is done based on emotional factors.</p></div>
+<div class="paragraph"><p>The emotional layer is one of the hardest layers to master. Emotional reactions can be almost impossible to predict. A user&#8217;s culture, age, and life experiences all trigger which unique emotions. Unless you know your users well you could just as easily trigger negative emotions instead of positive ones.</p></div>
+<div class="paragraph"><p>The effort is not without reward. Companies like Apple and BMW have used emotional design to connect with their users in a way that most companies only aspire to. How many companies design a product so loved that people are willing to wait days out in the cold just to buy it before their friends do? Only the select few that nail the emotional appeal can create such a response.</p></div>
+<div class="paragraph"><p>To meet each layer of design you must first fully understand what the needs of that layer are and why they are important. Often design needs are overlooked because it isn&#8217;t clear how critical they are to the success of a site. Once you have a clear understanding of the needs not only will you be convinced as to their importance, you will have the knowledge to convince clients and bosses as well. Addressing the need (or in some cases, needs) of each layer is done through intentional use of design principles.</p></div>
+<div class="paragraph"><p>This book covers the layers in a similar manner; first by introducing and discussing the importance of the layer and then by giving you practical advice on how to address those needs through design principles. The design principles you will learn are not the aesthetic design principles they teach in art school, and using them intentionally is a sure-fire way to improve your design work.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_great_design_by_psychology">Great Design by Psychology</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>For all intents and purposes, every website exists because someone somewhere will use it. The web is a self-directed medium; users are in control of how they use a site and to what end. Nearly all websites have some objective that (ideally) justifies the resources used to create it, and that objective is almost always tied to user behavior on the site. Filling out a contact form, for example, could satisfy a lead generation objective.</p></div>
+<div class="paragraph"><p>The best designers are able to create a website that influences the users' ability to accomplish their own goals as well as satisfy the objective of the website. You could try and hypothesize the best way to do this and design a site based on your self-reflections, but unfortunately it would be no better than a shot in the dark.</p></div>
+<div class="paragraph"><p>The only real way to influence user behavior is by understanding how they think. Great designing is as much psychology as it is working with form and color. Psychology gives you the insight into what people find visually pleasing and why. It also informs you how they make decisions, and ultimately whether or not they comprehend the site they&#8217;re interacting with.</p></div>
+<div class="sect4">
+<h5 id="_what_is_a_design_principle">What is a Design Principle?</h5>
+<div class="paragraph"><p>A design principle is a fundamental idea about the practice of good design. They are guidelines, biases, laws, and psychological concepts on how to use visuals for a successful design.</p></div>
+<div class="paragraph"><p>Some principals are born out of new research in human behavior and psychology. Other principles have become recognized standards through their continued use in history and across cultures.</p></div>
+<div class="paragraph"><p>I wish I could tell you that just being aware of the principles in this book was enough to create great websites. Just being aware of the principles would probably help you achieve marginally better designs, but not consistently great ones. On occasion you would probably remember one of the principles and incorporate it, but it wouldn&#8217;t happen all the time. Such an approach is clearly better than being oblivious to design principles, but it&#8217;s not the most optimal way to design. Instead I urge you to design intentionally, being aware of exactly what you are doing with the design and why. Let&#8217;s examine intuition and intention and the differences between the two design approaches.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_instantly_improve_your_designs">Instantly Improve Your Designs</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Anytime you design you have a choice: design intentionally, or design intuitively. Intuitive design is the common approach. In this method, a designer uses their instinct to feel out the needs of the design. They decide the layout, information architecture, and visual style based on what "feels right".</p></div>
+<div class="paragraph"><p>Intentional design, on the other hand, is the use of requirements and constraints to purposefully make decisions to create the most effective design possible. Intuitive design tends to be a trial and error process. The designer will try different ideas and approaches on a blank canvas until they happen upon one the feels right. The intentional designer consciously considers what should be on the page, why it should be on the page, what manner it should be there, and what the implications of it being there are.</p></div>
+<div class="sect2">
+<h3 id="_the_danger_of_using_design_intuition">The Danger of Using Design Intuition</h3>
+<div class="paragraph"><p>Through out your career as a designer you have likely learned over a hundred different design rules. These including basic concepts such as form, lines, rectangles and circles, as well as advance concepts like contrast, rhythm, or texture.</p></div>
+<div class="paragraph"><p>You probably don&#8217;t need to actively think about these concepts while you design; you use them intuitively. This is not unlike driving a car. With a bit of practice, you don&#8217;t need to think about when to step on the brakes or how to turn the steering wheel.</p></div>
+<div class="paragraph"><p>There is a difference however, between knowing a theory and intentionally deciding how to use it. As we become more skilled at something we become accustomed to acting without thinking about it. Things that once required our full attention can quickly become automatic. You probably think about designing less now than you did when you first started your career, but in actually you should think about it more.</p></div>
+<div class="paragraph"><p>Beginners have to think hard about what we they are doing so the design meets quality expectations. As you gain experience, you develop a better sense of what combinations, methods, and approaches work consistently. This heightened design sense allows you to design with less intensive thought and planning.</p></div>
+<div class="paragraph"><p>For example, a new designer typically learns the basic color theory. As a novice designer you probably had to think hard when it came to finding good color combinations. In fact you might have had to look up color relationships in order to come up with pleasing color plates. As an experienced designer you probably don&#8217;t need to think about whether you should use complimentary or analogous colors. Instead, instinctively you browse through colors and select one that feels like a good fit amongst the others.</p></div>
+<div class="paragraph"><p>This is intuitive design at it&#8217;s finest. Textures, for example, are selected (or left out) based on a "gut instinct" rather than an intentional choice. Rather than deciding to use one texture over another, you might browse through texture options until, again, you find one that suits the objective.</p></div>
+<div class="paragraph"><p>Designing with this trial and error process can result in an organized, meaningful, and even visually interesting design. It may even meet all of the project requirements. But ultimately this process typically leads to acceptable design&#8201;&#8212;&#8201;not great design. If you think back to all the times that you ended up with a design concept that didn&#8217;t have anything innately wrong with it, but it also didn&#8217;t excite you, then chances are you have experienced the trial and error design process.</p></div>
+<div class="sect4">
+<h5 id="_why_design_intuition_produces_lackluster_results">Why Design Intuition Produces Lackluster Results</h5>
+<div class="paragraph"><p>The reason why design intuition can lead us astray is because whether we realize it or not we are very explanatory creatures. We are always trying to interpret and find reasons for the things we see.</p></div>
+<div class="imageblock" id="Figure-1.4" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_1-4.png" alt="figures/figure_1-4.png" width="800" height="600">
+</div>
+<div class="title">Figure 4. This design has inconsistent margins, spacing and alignment. While slight, it is noticeable and causes a feeling that something isn&#8217;t right about the design, although it is difficult to pinpoint exactly what.</div>
+</div>
+<div class="paragraph"><p>If you see two elements that are spaced ten pixels apart, and the third is spaced thirteen, your mind subconsciously tries to figure out why. If it can&#8217;t determine a reason you just end up feeling like something doesn&#8217;t quite make sense. On a macro level, if you have a whole design that has inconsistent sizing and spacing it will always feel slightly jumbled and incomplete.</p></div>
+<div class="paragraph"><p>We are a lot smarter than we give ourselves credit for and even non-designers can tell the difference between intentional design choices and unintentional ones. Demonstrating this high visual sensitivity is the fact that humans have an extreme bias towards rectangles that are a 1.61803399:1 ratio <a href="#Figure-1.5">[Figure-1.5]</a>. That is a very specific and irrational number to have a universal bias towards. Yet when people were asked to select the rectangle that was most appealing, the 1.618033991:1 ratio rectangle always comes out on top. To expect that you could trial and error your way into something that obscure is illogical. Even if you were able to do so once, the chance of doing it consistently is almost non-existent.</p></div>
+<div class="imageblock" id="Figure-1.5" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_1-5.png" alt="figures/figure_1-5.png" width="800" height="600">
+</div>
+<div class="title">Figure 5. This is a basic golden rectangle, created with a 1.61803:1 length by width ratio. Humans have a natural bias to be attracted to proportions that fit a 1.61803:1 ratio.</div>
+</div>
+<div class="paragraph"><p>So if we are really that sensitive to such a specific ratio in rectangle dimensions, imagine how using more than a dozen similar principles impacts an entire design. If you really want to create the most successful design I would argue it is crazy to try and guess your way through the process.</p></div>
+<div class="imageblock" id="Figure-1.6" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_1-6.png" alt="figures/figure_1-6.png" width="800" height="600">
+</div>
+<div class="title">Figure 6. Illustrator Jessica Allan uses asymmetrical layout for balance, which is visually uncomfortable for some people.</div>
+</div>
+<div class="paragraph"><p>Furthering the argument against trial and error is the pesky fact that design is subjective. Everyone&#8217;s eye and brain interprets visuals different. Often interpretation differences are slight, such as two people looking at the same color and seeing a slightly different shade. On the other hand, sometime these differences can be massive. In <a href="#Figure-1.6">[Figure-1.6]</a> we have a design that is balanced through asymmetry. The different shapes and whitespace create a balanced design despite the fact that the weighting and placement isn&#8217;t done in a conventional and symmetrical way. Many people will see this design as balanced and clean; other people are likely to see the exact opposite. To some viewers this design could feel random, cluttered, and chaotic even though it is technically well balanced.</p></div>
+<div class="paragraph"><p>So if you are designing by trying to feel out what sizes, shapes, colors, and placements look good to you, it could very well be at the expense of what looks good to everyone else. We are rarely the best judge of what looks the best to the widest range of people. As a designer, it&#8217;s easy to get too close to your own work and lose objectivity. It&#8217;s also important to remember we all have visual biases, and combined with the fact we all see things differently, it&#8217;s not hard to understand why our own biases are probably not shared by the majority.</p></div>
+<div class="paragraph"><p>The intuitive trial and error approach can, at times, lead to good design. Sometimes you might hit the lotto and end up with something completely amazing but why leave your work to luck and chance? Why hope you magically stumble upon the winning combination after spending all day trying ineffective alternatives? If you want to end up with inspiring design for every project you take on you need to be intentional and not rely on luck. This means that every design choice should have reason and intent behind it. You need to design with intention.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_6_2_great_design_is_intentional">1.6.2 Great Design is Intentional</h3>
+<div class="paragraph"><p>Design has been a major factor in Apple&#8217;s dramatic company turnaround. As you will see throughout this book, the products, software, and interfaces they design address every single layer of design needs.</p></div>
+<div class="paragraph"><p>The quality of their design does not happen by accident. It is not a result of hiring the most talented designers (although talented designers they do have.) If it was just a matter of experience and trial and error any company could do what they do, yet almost none have.</p></div>
+<div class="paragraph"><p>Apple is able to consistently produce great designs because they design intentionally. Everything is done for a very specific reason and that reason always adds value to the design. Nothing is left to chance.</p></div>
+<div class="paragraph"><p>If you want to design at this level then you too must design this way. Every choice you make must be done with cognition. Cognition is defined as "the process of thought"; it translates to information and applying knowledge. Thus practicing cognitive design is consciously using your knowledge and information to plan and make specific decisions about what goes on the page and in what form.</p></div>
+<div class="paragraph"><p>I would bet that you currently practice this on some level. If nothing else you decide the maximum width of your design, and what browsers are supported. You choose to implement an existing color scheme along with a specific corporate typeface.</p></div>
+<div class="paragraph"><p>These are intentional design choices based on your web expertise and the project design requirements. Guess what? That planning greatly improves your work. The site becomes consistent with the rest of the corporation&#8217;s materials and it is viewable on a range of different devices and screen resolutions.</p></div>
+<div class="paragraph"><p>If those conscious choices worked out so well why wouldn&#8217;t you apply that to all areas of your design work? One could consider "Given that the navigation could grow over time we should design it as a vertical menu rather than a horizontal one". Instantly your design becomes stronger and more effective because it is now capable of adapting to the website objective of expanding over time. This is true for both small and large decisions. Deciding if you should create a design that has full-page background images has significant implications on page speed and visual appeal; it shouldn&#8217;t be made without considering those factors.</p></div>
+<div class="paragraph"><p>If you are working on a design for a bank using the test and assess approach you may end up with a design that incorporates a large background photo on every page. Out of all the combinations you tried this may have looked the most appealing and interesting to you. By not deciding to use this approach intentionally you might completely overlook the fact the photo is not relevant to the latest rates or online banking (what most users visit the site for) and has slowed the site down for the average user. Instead you could have consciously explored what imagery is appropriate for the site and worked in a small but noticeable masthead that achieves a similar effect without distracting the user.</p></div>
+<div class="imageblock" id="Figure-1.7" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_1-7.png" alt="figures/figure_1-7.png" width="800" height="600">
+</div>
+<div class="title">Figure 7. The CarFreaks.net website is dedicated to expensive cars and the people who drive them. It is likely that users have high speed Internet and have a goal of seeing beautiful cars when they visit the site, making a large background a good design strategy.</div>
+</div>
+<div class="paragraph"><p>The problem in this scenario isn&#8217;t the design treatment. Both approaches can be used to create interesting visuals but there is a correct approach for the situation. If you were working on a website for an online car community like CarFreaks.net (<a href="#Figure-1.7">[Figure-1.7]</a>), the decision to use a large photo background strengthens the design. The users who frequent this site are likely interested in exotic cars and will connect with the dramatic photo. In addition, the majority of this site&#8217;s users are likely to have high speed Internet access, so picture load times are not significant. This same approach used in this situation becomes a strong design decision instead of a weak one.</p></div>
+<div class="paragraph"><p>Unfortunately, many avoid this approach because it is more difficult. When you start a new design you are thrown into a world of limited knowledge. How are you supposed to definitively say what visuals embody a company if you don&#8217;t fully understand them? It is much easier to do the test and assess method rather than do mentally challenging research. In fact, I am willing to bet many designers picked this career specifically because they didn&#8217;t want to do research.</p></div>
+<div class="imageblock" id="Figure-1.8" style="text-align:center;">
+<div class="content">
+<img src="figures/figure_1-8.png" alt="figures/figure_1-8.png" width="800" height="600">
+</div>
+<div class="title">Figure 8. Rather than guessing your column widths, intentionally choosing them results in a stronger, more effective design. The layout on the left was created based on what I thought looked best (the eye-ball approach), where the layout on the right was intentionally sized and spaced using ratios and consistent spacing. The Layout on the right is much more visually calm and balanced.</div>
+</div>
+<div class="paragraph"><p>This intentional analysis of what goes into the design and in what form can be applied to all areas of your work. Rather than eye balling how wide your left column should be you could carefully decide based on design knowledge and principles such as the rule of thirds or the golden ratio (discussed later). Even if you choose to design outside of the principles in this book, deciding intentionally with reason will create a more cohesive and logical design. Viewers on a subconscious level pick up these subtle details and understand the design at a higher level because of it.</p></div>
+<div class="paragraph"><p>When I say all areas of your work, I really mean it. You should thoughtfully choose margins, widths, heights, what image to use, what colors, what shapes, curves, and typefaces. All of these elements work together to tell a story; the viewer reads that story and derives meaning from it.</p></div>
+<div class="paragraph"><p>I am not suggesting that you have to come up with a detailed plan and stick to it fervently. Experimentation can lead to innovation or even "happy mistakes". There is a difference however, between trying alternatives using reason and doing the same on a purely random basis. If you are experimenting with different textures you must remain aware of the implications that a texture carries.</p></div>
+<div class="paragraph"><p>The intentional design approach is more difficult; there is no question about it. It may be a struggle to incorporate into your workflow if you are not currently designing this way. While more difficult, you will be rewarded for your effort, as it is also more effective and ultimately, the end-product is actually <strong>designed</strong> and not a by-product of chance.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Because design is creative we often treat it as a subjective practice. We use our own tastes and biases to judge the value of web sites we view. We rationalize how well the site is designed based on our aesthetic tastes and preferences. In actuality, design on the web is not subjective at all. One design can clearly out perform another and it isn&#8217;t necessarily going to be the one that you or the client likes the best. There are measurement tools available (website statistics) that prove it. We need to start thinking about design in a more quantifiable way.</p></div>
+<div class="paragraph"><p>This doesn&#8217;t mean that we should ignore or forgo creativity; just the opposite in fact. Rather we should use our knowledge to intentionally plan our designs to be as effective as possible. Once design planning becomes an ingrained habit, it becomes more creative than the test and assess method. If we could be sure that everyone shared our own personal viewpoint, then the eyeball-it-method would be extremely effective. Unfortunately, humans are dramatically different in this regard, and as such have dramatically different tastes.</p></div>
+<div class="paragraph"><p>There are two important aspects of human nature that we must understand to reach our full potential as designers. The first is that design is subjective. This means that everyone&#8217;s  tastes and preferences are different. You could show a design to one person who&#8217;d love it, only to show another who absolutely detests it. Second, we as humans are always looking for understanding and reasoning behind the things we interact with in our lives. Ultimately the two key points are: (1) just because you like what you see doesn&#8217;t mean everyone else will, and (2) people will be looking for reasoning behind everything you have done in a design whether you explicitly put it there or not.</p></div>
+<div class="paragraph"><p>A designer&#8217;s challenge is to create the most effective website given the project needs and constraints. The websites you design have very specific reasons for their existence. The website owners expect to get something in return for their investment, and the users expect to get something in return for visiting the site. At the end of the day design is about creating something that people will use; thus understanding peoples needs and psychology must be the backbone of your design process.</p></div>
+<div class="paragraph"><p>This is why using design principles to meet the six layers of design needs are essential to amazing design. The design needs allow you to prioritize your design decision so you can come up with the best solution for the problem in front of you. The design principles allow you to make intentional educated decisions to meet those needs.</p></div>
+<div class="paragraph"><p>This process of addressing design needs with design principles will cause a shift from design experimentation to design architecture. When people see the design and naturally move to derive meaning from what the see, they will be able to do so because everything was done for a specific reason. When they try and use the design it will make sense and be intuitive because you sought to understand their thought processes. Users will be more productive because you thought about their needs and designed solutions to address them. Design has the potential to have an unbelievable impact on the web when everything is planned out before hand with the intent of creating those specific reactions. Furthermore, all this can be done without any sacrifice of creativity, in fact just the opposite. Why wouldn&#8217;t you want to design this way?</p></div>
+<div class="paragraph"><p>To understand not only how the principles apply to design but also why they are such an integral secret of amazing design it is important to first know what "design” really encompasses. When we talk about design in relation to the web, most of the time it is done with regards to the visual skin that sits upon the site skeleton. Specifically we often are referring to colors, shades, graphics, and hues. Design is a much more broad discipline, and in order to understand all that it encompasses, we need to dissect it.</p></div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr></div>
+<div id="footer">
+<div id="footer-text">
+Version 4.6<br>
+Last updated 2011-08-23 12:44:08 MDT
+</div>
+</div>
+</body>
+</html>
