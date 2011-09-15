@@ -1,0 +1,29 @@
+---
+layout: post
+title: Synopsis
+
+---
+
+# {{ page.title }}
+
+<p class="meta">15 September 2011</p>
+
+I try very hard to avoid "making noise" when I write. I personally have a deep aversion for places (and people) that produce high "signal-to-noise" content, which is one of the reasons I don't spend much time on Twitter anymore. What used to be -- for me -- a source of intellectually stimulating threads, has turned into something akin to walking into a noisy, crowded bar at 1 AM. Lots and lots of people shouting to make themselves heard; often unintelligible things. People "retweet" content that has no obvious meaning to anyone not involved in the original thread. Chopped up bits of conversation I have no interest in whatsoever appear out of nowhere. Inside jokes or ridicule aimed at unknown others are everywhere. I don't "do" bars for a reason; Twitter reminds me why.
+
+So I make every attempt to write deliberately; to post only things I think might interest those to take the time to read my words. And I do my best to frame things in at least a bit of context.
+
+My life has been a bit of a maelstrom the past three weeks. No single event was important enough to warrant a "post", although -- in retrospect -- each one pushed me into a different pool of water.
+
+Here's a synopsis:
+
+Two days after installing LMDE, the installation failed with the same error I experienced under Natty ([see August 22 post](http://tsyroid.github.com/blog/2011/08/borked.html)). Having eliminated distribution quirks, and core data, that only left one thing: a corrupt configuration file somewhere. I did a clean install of Natty, copied over my data bits only, and over the course of several days, patiently rebuilt all configuration-specfic files as need arose. It took a week before I could say with any confidence I was heading down the right path. I still don't have a clue where, exactly, the problem lay -- but it's solved. My install is stable and reliable again.
+
+One interesting consequence of working through the above is that the complexity of my current working configuration is dramatically reduced from what it used to be. A nice unexpected bonus which, in retrospect, more than offsets the frustration experienced. It also reminded me some problems are not worth the effort required to solve them -- let go of the bone, Tom, and move on.
+
+The book I've been editing has slowly and quietly evolved into a "circle-jerk" of epic proportions. I find a rhythm and the publisher says "Whoah; we want to evaluate where things are at". Two, four, five days pass, and they tell me to proceed, "full steam ahead". Two days later I run out of material to edit. Five days after that, the publisher puts the brakes on again. The job is keeping food on the table -- kinda-sorta -- but the chaotic ride is veering close to the line of not-worth-it. Things have settled out in the past few days, and the author and I are nearing the home-stretch, but it won't be long before I face an inevitable "what's next?" fork in the road.
+
+On the upside, working with this book has forced me think about how difficult tasks that embody "artistic" elements (graphic design, photography, writing) are to describe in words. Writing about "how to design a web page" is, at a very fundamental level, very different than writing about code or configuration or how to use a particular piece of software.
+
+I've revisited Oneiric multiple times over the course of the last three weeks. Each time I come away with the same impressions: (1) Oneiric is significantly slower than Natty (on my ThinkPad); (2) I so far fail to "see the light" with regards to the numerous interface changes made in Oneiric, especially considering the underlying instability their introduction has caused; (3) wireless networking has a serious bug in it somewhere (not only is it sllooow, but it drops out sporatically for no apparent reason); and (4) some of my "daily workhorses" have yet to either make the cut into Oneiric (Gloobus-Preview) or retain similiar functionality (Synapse). The fact I keep returning to monitor progress means I haven't rejected Oneiric out-of-hand, but every time I reload Natty on my laptop the lure to revisit Oneiric diminishes. Which is hugely significant. There's always been something in previous Ubuntu versions that attracted me enough to tolerate the bugs and inevitable breakage inherent in any given pre-release cycle. This is the first time, for as far back as I can remember, that I find myself strangely neutral to everything "new and cool" currently on the horizon.
+
+Interesting times ahead.
